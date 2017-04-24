@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rm -rf ./_build
+./node_modules/.bin/lsc -o ./_build/task -c ./task/*.ls
