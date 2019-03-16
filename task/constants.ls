@@ -19,7 +19,7 @@ dir =
   TASK : "#root/#{DIRNAME.TASK}"
 
 module.exports =
-  APPNAME: \gospelvis
+  APPNAME: \me2christ
   dirname: DIRNAME
   dir    : dir
 

@@ -1,14 +1,14 @@
-name       : \gospelvis
+name       : \me2christ
 version    : \0.1.0
-description: "Visualising a harmony of the Gospels"
+description: \me2christ.com
 private    : true
-homepage   : \https://github.com/dizzib/gospelvis
-bugs       : \https://github.com/dizzib/gospelvis/issues
+homepage   : \https://github.com/dizzib/me2christ
+bugs       : \https://github.com/dizzib/me2christ/issues
 license:   : \MIT
 author     : \dizzib
 repository:
   type: \git
-  url : \https://github.com/dizzib/gospelvis
+  url : \https://github.com/dizzib/me2christ
 scripts:
   start: './task/bootstrap && node ./_build/task/repl'
 engines:
