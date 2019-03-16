@@ -20,6 +20,7 @@ devDependencies:
   cron         : \~1.0.3
   growly       : \~1.3.0
   pug          : \~2.0.3
+  'pug-cli'    : \~1.0.0-alpha6
   livescript   : \~1.6.0
   lodash       : \~4.6.1
   'node-static': \~0.7.11

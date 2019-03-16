@@ -23,7 +23,7 @@ tasks  =
     oxt : \js
     xsub: 'json.js->json'
   pug:
-    cmd : "#BIN/pug --out $ODIR $IN"
+    cmd : "#BIN/pug --out $OUT $IN"
     ixt : \pug
     oxt : \html
     mixn: \_
@@ -31,7 +31,7 @@ tasks  =
     cmd : 'cp --target-directory $OUT $IN'
     ixt : '{css,eot,gif,html,jpg,js,mak,otf,pem,png,svg,ttf,txt,woff,woff2}'
   stylus:
-    cmd : "#BIN/stylus -u nib --out $OUT $IN"
+    cmd : "#BIN/stylus --out $OUT $IN"
     ixt : \styl
     oxt : \css
     mixn: \_
