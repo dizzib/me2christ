@@ -2,13 +2,11 @@
   box-sizing  border-box
 
 body
-  background  black
-  color       white
   margin      0
 
 .flatline
   svg
-    margin    10vmin auto 10vmin auto
+    margin    10vmin auto
     width     100%
   path
     opacity           0
@@ -33,8 +31,25 @@ body
     100%
        opacity 0
 
+h1
+  margin 0 0 10vmin 0
+
+.content
+  background  black
+  color       black
+  transition  background 2s
+  &.visible
+    background  white
+
+.splash
+  color       white
+  padding     10vmin 0
+  transition  background 2s
+  &.visible
+    background  black
+
 .verse
-  margin        30vmin auto 10vmin auto
+  margin        10vmin auto
   padding       5vmin
   width         75%
 

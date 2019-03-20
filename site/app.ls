@@ -1,8 +1,14 @@
 <- document.addEventListener \DOMContentLoaded
 
-t = new ScrollTrigger!
+new ScrollTrigger!
 
-p = document.querySelector '.flatline path'
-console.log p
-l = p.getTotalLength()
-console.log l
+s = scrollama!
+  ..setup step:\.step
+  ..onStepEnter -> it.element.classList.add \visible
+  ..onStepExit -> it.element.classList.remove \visible
+
+window.addEventListener \resize s.resize
+
+#p = document.querySelector '.flatline path'
+#l = p.getTotalLength()
+#console.log l

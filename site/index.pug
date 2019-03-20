@@ -7,17 +7,18 @@ html
     meta(charset='UTF-8')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet' href='app.css')
+    script(src='/lib-3p/scrollama.min.js')
     script(src='/lib-3p/ScrollTrigger.min.js')
     script(src='app.js')
   body
-    .root
+    .splash.step
       +verse('For the wages of sin is death...')
       .flatline(data-scroll)
         include:svgo asset/flatline.svg
       +verse('...but the gift of God is eternal life...')
       +verse('...through Jesus Christ our Lord')
         .ref Romans 6:23
-    .content
+    .content.step
       h1 me2christ
       h1 me2christ
       h1 me2christ
