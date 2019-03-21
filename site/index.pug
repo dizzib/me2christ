@@ -1,4 +1,4 @@
-include mixin.pug
+include _mixin.pug
 
 doctype html
 html
@@ -11,14 +11,18 @@ html
     script(src='/lib-3p/ScrollTrigger.min.js')
     script(src='app.js')
   body
-    .splash.step
-      +verse('For the wages of sin is death...')
-      .flatline(data-scroll)
-        include:svgo asset/flatline.svg
-      +verse('...but the gift of God is eternal life...')
-      +verse('...through Jesus Christ our Lord')
-        .ref Romans 6:23
-    .content.step
+    .light
+      img(src='asset/light.png')
+    +verse('For the wages of sin is death...')
+    .flatline(data-scroll)
+      include:svgo asset/flatline.svg
+    .scrollama
+      +verse('but the gift of God is eternal life...')
+      .lifeline(data-scroll='centerVertical')
+        include:svgo asset/lifeline.svg
+    +verse('through Jesus Christ our Lord').v3
+      .ref Romans 6:23
+    .content
       h1 me2christ
       h1 me2christ
       h1 me2christ

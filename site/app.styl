@@ -1,65 +1,48 @@
+@import '_svg.styl'
+
 *
   box-sizing  border-box
 
 body
+  background  black
   margin      0
 
-.flatline
-  svg
-    margin    10vmin auto
-    width     100%
-  path
-    opacity           0
-    stroke            white
-    stroke-dasharray  780 // full length of path
-    stroke-dashoffset @stroke-dasharray
-
-  &.visible
-    path
-      animation       draw 2s, fade 2s
-      animation-iteration-count 6
-
-  @keyframes draw
-    to
-      stroke-dashoffset  0
-
-  @keyframes fade
-    0%
-       opacity 1
-    25%
-       opacity 1
-    100%
-       opacity 0
-
 h1
-  margin 0 0 10vmin 0
+  margin      0 0 10vmin 0
 
 .content
-  background  black
   color       black
-  transition  background 2s
-  &.visible
-    background  white
+  width       75%
+  margin      0 auto
 
-.splash
-  color       white
-  padding     10vmin 0
-  transition  background 2s
-  &.visible
-    background  black
+.light
+  opacity     1
+  position    fixed
+  top         0
+  margin      0
+  z-index     -1
+  display     flex
+  height      100%
+  width       100%
+  justify-content center
+  align-items     center
+  transform   scale(0, 0)
 
 .verse
+  color         white
   margin        10vmin auto
   padding       5vmin
   width         75%
 
   opacity       0
-  transform     scale(0.9, 0.9)
-  transition    opacity 1s, transform 1s
+  transition    opacity 2s
 
   &.visible
     opacity       1
     transform     scale(1, 1)
+
+  &.v3
+    color       black
 
   .ref
     font-size   5vmin
