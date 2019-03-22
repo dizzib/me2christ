@@ -1,7 +1,12 @@
+mixin expandable(heading)
+  details
+    summary= heading
+    block
+
 doctype html
 html
   head
-    title me2christ.com - The kingdom of God is near
+    title me2christ.com - The kingdom of God is real!
     meta(charset='UTF-8')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet' href='app.css')
@@ -17,17 +22,42 @@ html
            | spirit, he cannot enter the kingdom of God
         .ref John 3:5
     .main
-      p Come, step out of the darkness and into the light
-        | , for the kingdom of God is truly real and many are entering in today...
-      p m2c
-      p m2c
-      p m2c
-      p m2c
-      p m2c
-      p Feel free to call or text me, Andrew, on 07305 729930.
-      p m2c
-      p Jesus Christ is knocking on the door of your heart
-        | , but will you open it and let him in ?
+      :markdown-it
+        Come, step out of the darkness and into the light,
+        for truly the kingdom of God is real and many are entering in today...
+      iframe(src='https://www.youtube.com/embed/zka4DUYeJ5g')
+
+      :markdown-it
+        Eternal life is an amazing gift of God, but you must...
+
+      +expandable('Believe in Jesus')
+        :markdown-it
+          ...that God *became flesh and dwelt among us (John 1:14)*,
+          was a
+
+      +expandable('Repent of your sin')
+        :markdown-it
+          Death was not part of God's original creation,
+
+      +expandable('Get baptised in water')
+        :markdown-it
+
+      +expandable('Receive Holy Spirit')
+        :markdown-it
+          Heal the sick
+          > *Christ in you, the hope of glory (Colossians 1:27)*
+
+      :markdown-it
+        Do not be deceived, following Jesus is not easy and will cost you
+        your old life, but you will start to become what God created you
+        to be from the beginning, a Son or Daughter of God!
+
+        Jesus Christ is knocking on the door of your heart,
+        but will you open it and let him in ?
+
+        Feel free to call/text me on [07305 729930](tel:07305-729930), or
+        email me at [andrew@me2christ.com](mailto:andrew@me2christ.com).
+
     .outro
       .verse And as it is appointed unto men once to die
         | , but after this the judgement

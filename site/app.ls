@@ -2,10 +2,12 @@
 
 b = document.body
 l = (b.getElementsByClassName \light).0
+m = (b.getElementsByClassName \main).0
 burst = ->
   r = 0 if (r = it) < 0
   r = 1 if r > 1
-  l.style.transform = "scale(#{sc = r * 5}, #sc)"
+  l.style.transform = "scale(#{sc = r * 5.5}, #sc)"
+  m.style.opacity = r * 5
 
 # intro
 s = scrollama!setup offset:0 progress:true step:\.intro
