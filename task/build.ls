@@ -78,6 +78,7 @@ function compile-batch tid
   w = t.watcher.getWatched!
   files = [ f for path, names of w for name in names
     when test \-f f = Path.resolve Dir.ROOT, path, name ]
+  files = _.filter files, -> (Path.basename it).0 isnt t?mixn
   info = "#{files.length} #tid files"
   G.say "compiling #info..."
   for f in files then W4 compile, t, Path.relative Dir.ROOT, f
