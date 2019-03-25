@@ -1,0 +1,59 @@
+filter(args)
+  -webkit-filter  args
+  -moz-filter     args
+  -ms-filter      args
+  -o-filter       args
+  filter          args
+
+body.modal-open
+  overflow    hidden  // prevent scrolling
+
+  .intro
+  .main
+  .outro
+    filter    blur(4px)
+
+.modal
+  display    none
+  position   fixed
+  left       0
+  top        0
+  height     100%
+  width      100%
+  background rgba(0, 0, 0, 0.5)
+
+.modal:target
+  display         flex
+  justify-content center
+  align-items     center
+
+.modal-dialog
+  display         flex
+  flex-direction  column
+  overflow        auto
+  max-height      75%
+  width           75%
+
+  background      white
+  color           black
+  border-radius   5vmin
+  font-size       5vmin
+
+.modal-head
+  border-bottom   1px solid
+  font-weight     bold
+  padding         1vmin
+  text-align      center
+
+.modal-body
+  overflow        auto
+  padding         0 5vmin
+
+.modal-foot
+  background      #3f3
+  display         block
+  font-weight     bold
+  padding         1vmin
+  text-align      center
+  text-decoration none
+  width           100%

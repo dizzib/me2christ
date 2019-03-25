@@ -9,7 +9,7 @@ mixin modal(id)
       .modal-head= id
       .modal-body
         block
-      a(href='#!').modal-foot Ok
+      a(href='#!').modal-foot Got it!
 
 doctype html
 html
@@ -29,59 +29,19 @@ html
         .red Most assuredly, I say to you, unless one is born of water and the 
            | spirit, he cannot enter the kingdom of God
         .ref John 3:5
+
     .main
       :markdown-it
-        Come, step out of the darkness and into the light,
-        for truly the kingdom of God is real and many are entering in today...
+        Come, step out of the darkness and into the light, for the kingdom of
+        God is real and many are [entering in](gospel.html) today...
       iframe(src='https://www.youtube.com/embed/zka4DUYeJ5g')
 
       :markdown-it
         Jesus came to set us free from [sin](#sin) so we can live a holy life
         and be with God forever.
 
-        To begin this amazing journey, the bible says you must...
-
-      +expandable('Repent of your sin')
-        :markdown-it
-          After Jesus died and was buried, he resurrected into eternal
-          life on the third day.
-
-          In the greatest act of love, he willingly sacrificed himself so
-          your sins may be taken away and forgiven.
-
-        +expandable('2 Cor 5:21')
-          :markdown-it
-            > *For he made him who knew no sin to be sin for us,
-              that we might become the righteousness of God in him.*
-
-        +expandable('Romans 3:23')
-          :markdown-it
-            > *For all have sinned, and come short of the glory of God*
-
-      +expandable('Get baptised in water')
-        :markdown-it
-          Bury your old life and wash away your sins, and
-          start living a holy life for Jesus.
-
-        +expandable('2 Cor 5:7')
-          :markdown-it
-            > *Therefore if anyone is in Christ he is a new creation;
-              old things have passed away; behold, all things have
-              become new*
-
-      +expandable('Receive Holy Spirit')
-        :markdown-it
-
-        +expandable('2 Cor 5:7')
-          :markdown-it
-            > *Christ in you, the hope of glory (Col 1:27)*
-
-      :markdown-it
-        Jesus is knocking on the door of your heart,
-        but will you open it and let him in ?
-
-        Feel free to call, whatsapp or text me on [07305 729930](tel:07305-729930), or
-        email me at [andrew@me2christ.com](mailto:andrew@me2christ.com).
+        Feel free to call, whatsapp or text me on [07305 729930](tel:07305-729930)
+        or email me at [andrew@me2christ.com](mailto:andrew@me2christ.com).
 
     .outro
       .verse And as it is appointed unto men once to die
@@ -90,7 +50,7 @@ html
 
     +modal('sin')
       :markdown-it
-        Sin is when we ignore God, break His laws, and go our own way in life.
+        Sin is when we ignore God, break his laws, and go our own way in life.
 
         Sin destroys relationships with friends, family, and with God.
 
