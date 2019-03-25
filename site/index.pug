@@ -3,6 +3,14 @@ mixin expandable(heading)
     summary= heading
     block
 
+mixin modal(id)
+  .modal(id=id)
+    .modal-dialog
+      .modal-head= id
+      .modal-body
+        block
+      a(href='#!').modal-foot Ok
+
 doctype html
 html
   head
@@ -28,16 +36,18 @@ html
       iframe(src='https://www.youtube.com/embed/zka4DUYeJ5g')
 
       :markdown-it
-        Jesus came to set us free from sin, so we can live a holy life
+        Jesus came to set us free from [sin](#sin) so we can live a holy life
         and be with God forever.
 
-        To begin this exciting journey, the bible says you must...
+        To begin this amazing journey, the bible says you must...
 
       +expandable('Repent of your sin')
         :markdown-it
-          Jesus willingly sacrificed himself to take away our sins.
-          After he died and was buried, he resurrected into eternal
+          After Jesus died and was buried, he resurrected into eternal
           life on the third day.
+
+          In the greatest act of love, he willingly sacrificed himself so
+          your sins may be taken away and forgiven.
 
         +expandable('2 Cor 5:21')
           :markdown-it
@@ -77,3 +87,11 @@ html
       .verse And as it is appointed unto men once to die
         | , but after this the judgement
         .ref Hebrews 9:27
+
+    +modal('sin')
+      :markdown-it
+        Sin is when we ignore God, break His laws, and go our own way in life.
+
+        Sin destroys relationships with friends, family, and with God.
+
+        The bible says sin ultimately brings death.

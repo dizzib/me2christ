@@ -3,7 +3,8 @@
 b = document.body
 l = (b.getElementsByClassName \light).0
 m = (b.getElementsByClassName \main).0
-burst = ->
+
+function burst
   r = 0 if (r = it) < 0
   r = 1 if r > 1
   l.style.transform = "scale(#{sc = r * 5.5}, #sc)"
@@ -18,5 +19,10 @@ window.addEventListener \resize s.resize
 cb = (entries) ->
   r = 0.9 - entries.0.intersectionRatio
   burst r
-io = new IntersectionObserver cb, threshold:[x for x to 1 by 0.02]
-io.observe (b.getElementsByClassName \outro).0
+oio = new IntersectionObserver cb, threshold:[x for x to 1 by 0.02]
+oio.observe (b.getElementsByClassName \outro).0
+
+# modals
+mio = new IntersectionObserver (entries) -> for en in entries
+  b.className = if en.intersectionRatio > 0 then \modal-open else ''
+for m in b.getElementsByClassName \modal then mio.observe m
