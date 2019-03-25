@@ -4,26 +4,8 @@
   box-sizing  border-box
 
 body
-  background  black
-  color       white
   font-size   5vmin
   margin      0
-
-blockquote
-  font-family   serif   // quoted verses
-
-iframe
-  width 100%
-  top 5px
-  margin-bottom -5px
-  height calc(100vw * 215/560)
-
-details > summary
-  font-size   7vmin
-  margin-top  5vmin
-
-details > details > summary
-  font-size   4vmin
 
 .main
   color       black
@@ -35,9 +17,7 @@ details > details > summary
     padding     7px 5px 0 0
     text-shadow 2px 2px 6px #777
 
-.intro
-.main
-.outro
+.root
   margin      10vmin auto 10vmin auto
   width       75%
 
@@ -53,18 +33,3 @@ details > details > summary
   display         flex
   justify-content center
   align-items     center
-
-.verse
-  color         white
-  text-align    center
-  font-family   serif
-  font-size     10vmin
-
-  .red
-    color       red
-
-  .ref
-    color       #aaa
-    font-size   5vmin
-    margin-top  5vmin
-    text-align  right

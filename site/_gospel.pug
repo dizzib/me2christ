@@ -1,0 +1,52 @@
+mixin expandable(heading)
+  details
+    summary= heading
+    block
+
+:markdown-it
+  To begin this amazing journey, the bible says you must...
+
++expandable('Believe in Jesus')
+  :markdown-it
+    Jesus came to set us free from [sin](#sin) so we can live a holy life
+    and be with God forever.
+
+  :markdown-it
+    In the greatest act of love, Jesus willingly sacrificed himself,
+    taking the penalty for your sins.
+
+  +expandable('Bible verses')
+    :markdown-it
+      > *For he made him who knew no sin to be sin for us,
+        that we might become the righteousness of God in him.*
+        (2 Cor 5:21)
+
+details
+  summary
+    :markdown-it(inline) Repent of your [sin](#sin)
+  :markdown-it
+    To repent means to recognise your sin, accept God's forgiveness,
+    then turn away from doing and thinking those things.
+
+  +expandable('Bible verses')
+    :markdown-it
+      > *For all have sinned, and come short of the glory of God*
+      (Romans 3:23)
+
++expandable('Get baptised in water')
+  :markdown-it
+    Bury your old life and wash away your past sins, and
+    start living a new holy life for Jesus.
+
+  +expandable('2 Cor 5:7')
+    :markdown-it
+      > *Therefore if anyone is in Christ he is a new creation;
+        old things have passed away; behold, all things have
+        become new*
+
++expandable('Receive Holy Spirit')
+  :markdown-it
+
+  +expandable('2 Cor 5:7')
+    :markdown-it
+      > *Christ in you, the hope of glory (Col 1:27)*

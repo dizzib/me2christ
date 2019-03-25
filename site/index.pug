@@ -1,57 +1,28 @@
-mixin expandable(heading)
-  details
-    summary= heading
-    block
+extends _base
 
-mixin modal(id)
-  .modal(id=id)
-    .modal-dialog
-      .modal-head= id
-      .modal-body
-        block
-      a(href='#!').modal-foot Got it!
+append head
+  link(rel='stylesheet' href='index.css')
+  script(src='/lib-3p/scrollama.min.js')
 
-doctype html
-html
-  head
-    title me2christ.com - The kingdom of God is real!
-    meta(charset='UTF-8')
-    meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    link(rel='stylesheet' href='app.css')
-    script(src='/lib-3p/scrollama.min.js')
-    script(src='app.js')
-  body
-    .light
-      img(src='asset/light.png')
+block intro
+  .verse Jesus answered
+    .red Most assuredly, I say to you, unless one is born of water and the 
+         | spirit, he cannot enter the kingdom of God
+    .ref John 3:5
 
-    .intro
-      .verse Jesus answered
-        .red Most assuredly, I say to you, unless one is born of water and the 
-           | spirit, he cannot enter the kingdom of God
-        .ref John 3:5
+block main
+  :markdown-it
+    Come, step out of the darkness and into the light, for the kingdom of
+    God is real and many are entering in today...
+  iframe(src='https://www.youtube.com/embed/zka4DUYeJ5g')
 
-    .main
-      :markdown-it
-        Come, step out of the darkness and into the light, for the kingdom of
-        God is real and many are [entering in](gospel.html) today...
-      iframe(src='https://www.youtube.com/embed/zka4DUYeJ5g')
+  include _gospel
 
-      :markdown-it
-        Jesus came to set us free from [sin](#sin) so we can live a holy life
-        and be with God forever.
+  :markdown-it
+    Feel free to call, whatsapp or text me on [07305 729930](tel:07305-729930)
+    or email me at [andrew@me2christ.com](mailto:andrew@me2christ.com).
 
-        Feel free to call, whatsapp or text me on [07305 729930](tel:07305-729930)
-        or email me at [andrew@me2christ.com](mailto:andrew@me2christ.com).
-
-    .outro
-      .verse And as it is appointed unto men once to die
-        | , but after this the judgement
-        .ref Hebrews 9:27
-
-    +modal('sin')
-      :markdown-it
-        Sin is when we ignore God, break his laws, and go our own way in life.
-
-        Sin destroys relationships with friends, family, and with God.
-
-        The bible says sin ultimately brings death.
+block outro
+  .verse And as it is appointed unto men once to die
+    | , but after this the judgement
+    .ref Hebrews 9:27
