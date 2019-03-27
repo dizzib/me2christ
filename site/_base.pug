@@ -1,5 +1,5 @@
 mixin expandable(heading)
-  details
+  details&attributes(attributes)
     summary= heading
     block
 
@@ -9,7 +9,7 @@ mixin modal(id)
       .modal-head= id
       .modal-body
         block
-      a(href='#!').modal-foot Got it!
+      a(href='#!').modal-foot Close
 
 doctype html
 html

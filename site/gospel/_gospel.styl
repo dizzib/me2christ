@@ -1,12 +1,31 @@
+section(bg)
+  summary
+    background    bg
+    color         white
+    a
+      color       white
+  .verse
+    border-color  bg
+
 .main
-  & > details
-    & > summary
-      background  #0f0
-      font-size   7vmin
-      margin-top  5vmin
+  summary
+    border-radius 2vmin
+    font-size     7vmin
+    padding       1vmin
+    margin-top    5vmin
+
+  .baptism
+    section(blue)
+
+  .receive
+    section(red)
+
+  .repent
+    section(#666)
 
   .verse
-    background    #ff7
+    background    rgba(224, 224, 224, 0.5)
+    border-left   solid 1vmin
     font-family   serif
     margin-top    4vmin
 
