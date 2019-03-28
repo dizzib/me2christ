@@ -1,4 +1,4 @@
-@import 'gospel/_gospel'
+@import 'gospel/_base'
 
 body
   background  black
@@ -10,14 +10,24 @@ iframe
   margin-bottom -5px
   height calc(100vw * 215/560)
 
+.light
+  margin      0
+  position    fixed
+  top         0
+  height      100%
+  width       100%
+  transform   scale(0, 0)
+  z-index     -1
+
+  display         flex
+  justify-content center
+  align-items     center
+
 .intro
   margin-bottom 5vmin
 
 .outro
   margin-top    20vmin
-
-.red
-  color       red
 
 .intro
 .outro
@@ -34,3 +44,6 @@ iframe
       font-size   5vmin
       margin-top  5vmin
       text-align  right
+
+.red
+  color         red
