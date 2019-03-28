@@ -1,6 +1,6 @@
 <- document.addEventListener \DOMContentLoaded
 
-b = document.body
+(b = document.body).classList.remove \noscript
 
 function burst
   const l = b.querySelector \.light
@@ -16,11 +16,11 @@ s.onStepProgress -> burst it.progress - 0.1
 window.addEventListener \resize s.resize
 
 # outro
-cb = -> burst 0.9 - it.0.intersectionRatio
+cb = -> if r = it.0.intersectionRatio then burst 0.9 - r
 oio = new IntersectionObserver cb, threshold:[x for x to 1 by 0.02]
-oio.observe (b.getElementsByClassName \outro).0
+oio.observe b.querySelector \.outro
 
 # modals
 mio = new IntersectionObserver -> for x in it
-  b.className = if x.intersectionRatio > 0 then \modal-open else ''
+  b.classList.toggle \modal-open x.intersectionRatio
 for m in b.getElementsByClassName \modal then mio.observe m
