@@ -1,11 +1,11 @@
-section(bg)
+section(col1, col2)
   summary
-    background    bg
-    color         white
+    background-image  linear-gradient(col1, col2)
+    color             white
     a
-      color       white
+      color           white
   .verse
-    border-color  bg
+    border-color      col2
 
 .main
   summary
@@ -15,13 +15,13 @@ section(bg)
     margin-top    5vmin
 
   .baptism
-    section(blue)
+    section(cyan, blue)
 
   .receive
-    section(red)
+    section(orange, red)
 
   .repent
-    section(#666)
+    section(#ccc, #333)
 
   .verse
     background    rgba(224, 224, 224, 0.5)
