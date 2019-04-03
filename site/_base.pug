@@ -1,8 +1,3 @@
-mixin expandable(heading)
-  details&attributes(attributes)
-    summary= heading
-    block
-
 mixin modal(id)
   .modal(id=id)
     .modal-dialog
@@ -21,8 +16,6 @@ html
       link(rel='stylesheet' href='app.css')
       script(src='app.js')
   body.noscript
-    .light
-      img(src='asset/light.png')
     .root
       .intro
         block intro
@@ -30,4 +23,4 @@ html
         block main
       .outro
         block outro
-    block modal
+    block foot
