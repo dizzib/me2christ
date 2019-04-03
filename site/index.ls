@@ -1,21 +1,17 @@
 <- document.addEventListener \DOMContentLoaded
 
 b = document.body
+l = b.querySelector \.light
+m = b.querySelector \.main
 
+# intro/outro light burst
 function burst
-  const l = b.querySelector \.light
-  const m = b.querySelector \.main
-  r = 0 if (r = it) < 0
-  r = 1 if r > 1
+  r = it.0.intersectionRatio
+  if r < 0 then r = 0 else if r > 1 then r = 1 else r = 1 - r
   l.style.transform = "scale(#{sc = r * 5.5}, #sc)"
   m.style.opacity = r * 5
 
-# intro
-s = scrollama!setup offset:0 progress:true step:\.intro
-s.onStepProgress -> burst it.progress - 0.1
-window.addEventListener \resize s.resize
-
-# outro
-cb = -> if r = it.0.intersectionRatio then burst 0.9 - r
-oio = new IntersectionObserver cb, threshold:[x for x to 1 by 0.02]
-oio.observe b.querySelector \.outro
+const GRAINS = 25
+const OPTS = margin:\20vmin threshold:[x / GRAINS for x to GRAINS]
+o = new IntersectionObserver burst, OPTS
+for el in b.querySelectorAll '.intro, .outro' then o.observe el
