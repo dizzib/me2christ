@@ -1,17 +1,33 @@
 <- document.addEventListener \DOMContentLoaded
 
+const DARK    = [0] * 5
+const RAMP-UP = [x / 6 for x to 30]
+const LIGHT   = [5] * 15
+const INTRO   = DARK ++ RAMP-UP ++ LIGHT
+const OUTRO   = INTRO.slice!reverse!
+const SCALES  = INTRO ++ OUTRO
+
 b = document.body
+h = document.documentElement
 l = b.querySelector \.light
 m = b.querySelector \.main
 
-# intro/outro light burst
-function burst
-  r = it.0.intersectionRatio
-  if r < 0 then r = 0 else if r > 1 then r = 1 else r = 1 - r
-  l.style.transform = "scale(#{sc = r * 5.5}, #sc)"
-  m.style.opacity = r * 5
+var height # for efficiency, only calculated on height change
 
-const GRAINS = 25
-const OPTS = margin:\20vmin threshold:[x / GRAINS for x to GRAINS]
-o = new IntersectionObserver burst, OPTS
-for el in b.querySelectorAll '.intro, .outro' then o.observe el
+function burst
+  percent = Math.round (h.scrollTop||b.scrollTop) / height * 100
+  scale = SCALES[percent]
+  l.style.transform = "scale(#scale, #scale)"
+  m.style.opacity = scale
+
+function refresh-height
+  height := (h.scrollHeight||b.scrollHeight) - h.clientHeight
+  burst!
+
+# event handlers
+window.onresize = refresh-height
+window.onscroll = burst
+for el in b.getElementsByTagName \details then el.ontoggle = refresh-height
+
+# init
+refresh-height!
