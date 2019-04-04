@@ -1,6 +1,6 @@
 name       : \me2christ
-version    : \0.1.0
-description: \me2christ.com
+version    : \1.0.0
+description: 'me2christ.com source code'
 private    : true
 homepage   : \https://github.com/dizzib/me2christ
 bugs       : \https://github.com/dizzib/me2christ/issues
