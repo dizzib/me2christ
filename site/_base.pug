@@ -1,5 +1,5 @@
 mixin modal(id)
-  .modal(id=id)
+  .modal(id=id, onclick='window.history.back()')
     .modal-dialog
       .modal-head= id
       .modal-body
