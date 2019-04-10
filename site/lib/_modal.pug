@@ -1,0 +1,7 @@
+mixin modal(id)
+  .modal(id=id, onclick='window.history.back()')
+    .modal-dialog
+      .modal-head= id
+      .modal-body
+        block
+      a(href='#!').modal-foot Close
