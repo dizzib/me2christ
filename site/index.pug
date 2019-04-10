@@ -1,8 +1,8 @@
 extends _base
 
 append head
-  link(rel='stylesheet' href='index.css')
-  script(src='index.js')
+  style: include:stylus index.styl
+  script: include:livescript index.ls
 
 block intro
   .verse Jesus answered
