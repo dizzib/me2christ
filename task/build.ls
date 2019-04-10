@@ -22,6 +22,7 @@ tasks  =
     ixt : \ls
     oxt : \js
     xsub: 'json.js->json'
+    mixn: \_
   pug:
     cmd : "#BIN/pug --out $OUT $IN"
     ixt : \pug
@@ -112,7 +113,7 @@ function start-watching tid
     <- WFib
     if (Path.basename ipath).0 is t?mixn
       try
-        compile-batch tid
+        compile-batch \pug  # mixin must be included by top level pug
         me.emit \built
       catch e then G.err e
     else switch act
