@@ -22,6 +22,7 @@ module.exports =
   APPNAME: \me2christ
   dirname: DIRNAME
   dir    : dir
+  PORT   : 7777
 
 Assert test \-e dir.SITE
 Assert test \-e dir.TASK

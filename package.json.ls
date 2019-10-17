@@ -1,5 +1,5 @@
 name       : \me2christ
-version    : \1.3.0
+version    : \1.4.0
 description: 'me2christ.com source code'
 private    : true
 homepage   : \https://github.com/dizzib/me2christ
@@ -13,11 +13,11 @@ scripts:
   build: './task/bootstrap && node ./_build/task/npm/build'
   start: './task/bootstrap && node ./_build/task/repl'
 engines:
-  node: '>=0.10.x'
+  node: '>=8.16.x'
   npm : '>=1.0.x'
 devDependencies:
   chalk                       : \~0.4.0
-  chokidar                    : \~2.1.2
+  chokidar                    : \~3.2.2
   cron                        : \~1.0.3
   growly                      : \~1.3.0
   'jstransformer-livescript'  : \~1.2.0
@@ -28,6 +28,7 @@ devDependencies:
   'node-static'               : \~0.7.11
   pug                         : \~2.0.3
   'pug-cli'                   : \~1.0.0-alpha6
-  shelljs                     : \~0.2.6
+  shelljs                     : \~0.3.0
+  'sitemap-generator'         : \~8.4.1
   stylus                      : \~0.54.5
   'wait.for'                  : \~0.6.3

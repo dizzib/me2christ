@@ -30,7 +30,7 @@ tasks  =
     mixn: \_
   static:
     cmd : 'cp --target-directory $OUT $IN'
-    ixt : '{css,eot,gif,html,jpg,js,mak,otf,pem,png,svg,ttf,txt,woff,woff2}'
+    ixt : '{css,eot,gif,html,jpg,js,mak,otf,pem,png,svg,ttf,txt,woff,woff2,xml}'
   stylus:
     cmd : "#BIN/stylus --out $OUT $IN"
     ixt : \styl
