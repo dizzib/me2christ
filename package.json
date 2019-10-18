@@ -28,7 +28,7 @@
     "jstransformer-markdown-it": "~2.1.0",
     "jstransformer-stylus": "~1.5.0",
     "livescript": "~1.6.0",
-    "lodash": "~4.6.1",
+    "lodash": "~4.17.15",
     "node-static": "~0.7.11",
     "pug": "~2.0.3",
     "pug-cli": "~1.0.0-alpha6",
