@@ -86,7 +86,8 @@ function compile-batch tid
   G.ok "...done #info!"
 
 function get-opath t, ipath
-  p = ipath.replace("#{Dir.ROOT}/", '').replace t.ixt, t.oxt
+  rx = new RegExp("^#{Dir.ROOT}/")
+  p = ipath.replace(rx, '').replace t.ixt, t.oxt
   return p unless (xsub = t.xsub?split '->')?
   p.replace xsub.0, xsub.1
 
