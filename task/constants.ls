@@ -2,21 +2,17 @@ Assert = require \assert
 Shell  = require \shelljs/global
 
 const DIRNAME =
-  BUILD: \_build
+  BUILD: \build
   SITE : \site
+  SRC  : \src
   TASK : \task
   TEST : \test
 
-root = pwd!
-
 dir =
-  BUILD: "#root/#{DIRNAME.BUILD}"
+  BUILD: "/#{DIRNAME.BUILD}"
   build:
-    SITE: "#root/#{DIRNAME.BUILD}/#{DIRNAME.SITE}"
-    TASK: "#root/#{DIRNAME.BUILD}/#{DIRNAME.TASK}"
-  ROOT : root
-  SITE : "#root/#{DIRNAME.SITE}"
-  TASK : "#root/#{DIRNAME.TASK}"
+    SITE: "/#{DIRNAME.BUILD}/#{DIRNAME.SITE}"
+  SRC  : "/#{DIRNAME.SRC}"
 
 module.exports =
   APPNAME: \me2christ
@@ -24,5 +20,5 @@ module.exports =
   dir    : dir
   PORT   : 7777
 
-Assert test \-e dir.SITE
-Assert test \-e dir.TASK
+Assert test \-e dir.BUILD
+Assert test \-e dir.SRC

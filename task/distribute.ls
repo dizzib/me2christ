@@ -1,18 +1,25 @@
 C     = require \./constants
+Dir   = require \./constants .dir
 Shell = require \shelljs/global
 Smg   = require \sitemap-generator
 
-module.exports = ->
-  if /package.json/.test it or not it
-    if test \-e pjson = "#{C.dir.BUILD}/package.json"
-      cp \-f pjson, C.dir.ROOT
+module.exports =
+  prepare: ->
+    cp \-f pjson, Dir.SRC if test \-e pjson = "#{Dir.BUILD}/package.json"
 
-  # generate sitemap locally
-  const PATH = "#{C.dir.SITE}/sitemap.xml"
-  const URL = "http://localhost:#{C.PORT}"
-  const URL-PROD = \https://www.me2christ.com
-  const RX = new RegExp URL, \g
+  publish-local: ->
+    const DEST = \/app
+    log "publish to #DEST"
+    rm \-rf "#DEST/*"
+    for dir in <[ src task ]> then cp \-r "#{Dir.BUILD}/#dir" DEST
+    cp "#{Dir.BUILD}/package.json*" DEST
 
-  g = Smg URL, filepath:PATH
-  g.on \done -> sed '-i', RX, URL-PROD, PATH
-  g.start!
+    # generate sitemap
+    const PATH = "#{Dir.build.SITE}/sitemap.xml"
+    const URL = "http://localhost:#{C.PORT}"
+    const URL-PROD = \https://www.me2christ.com
+    const RX = new RegExp URL, \g
+
+    g = Smg URL, filepath:PATH
+    g.on \done -> sed '-i', RX, URL-PROD, PATH
+    g.start!

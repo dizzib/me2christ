@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
-rm -rf ./_build/*
+rm -rf /build/*
 
-LSC='./node_modules/.bin/lsc --debug'
-$LSC -o ./_build/task -c ./task/*.ls
-$LSC -o ./_build/task/npm -c ./task/npm/*.ls
+LSC='/node_modules/.bin/lsc --debug'
+$LSC -o /build/task -c /src/task/*.ls
+$LSC -o /build/task/npm -c /src/task/npm/*.ls

@@ -13,7 +13,7 @@ Dirname = require \./constants .dirname
 Dir     = require \./constants .dir
 G       = require \./growl
 
-const BIN = "#{Dir.ROOT}/node_modules/.bin"
+const BIN = "/node_modules/.bin"
 
 pruner = new Cron.CronJob cronTime:'*/10 * * * *' onTick:prune-empty-dirs
 tasks  =
@@ -46,7 +46,7 @@ module.exports = me = (new Emitter!) with
   start: ->
     G.say 'build started'
     try
-      pushd Dir.ROOT
+      pushd Dir.SRC
       for tid of tasks then start-watching tid
     finally
       popd!
@@ -61,7 +61,7 @@ module.exports = me = (new Emitter!) with
 
 function compile t, ipath, cb
   Assert.equal pwd!, Dir.BUILD
-  ipath-abs = Path.resolve Dir.ROOT, ipath
+  ipath-abs = Path.resolve Dir.SRC, ipath
   mkdir \-p odir = Path.dirname opath = get-opath t, ipath
   switch typeof t.cmd
   | \string =>
@@ -78,15 +78,15 @@ function compile-batch tid
   t = tasks[tid]
   w = t.watcher.getWatched!
   files = [ f for path, names of w for name in names
-    when test \-f f = Path.resolve Dir.ROOT, path, name ]
+    when test \-f f = Path.resolve Dir.SRC, path, name ]
   files = _.filter files, -> (Path.basename it).0 isnt t?mixn
   info = "#{files.length} #tid files"
   G.say "compiling #info..."
-  for f in files then W4 compile, t, Path.relative Dir.ROOT, f
+  for f in files then W4 compile, t, Path.relative Dir.SRC, f
   G.ok "...done #info!"
 
 function get-opath t, ipath
-  rx = new RegExp("^#{Dir.ROOT}/")
+  rx = new RegExp("^#{Dir.SRC}/")
   p = ipath.replace(rx, '').replace t.ixt, t.oxt
   return p unless (xsub = t.xsub?split '->')?
   p.replace xsub.0, xsub.1
@@ -99,14 +99,15 @@ function prune-empty-dirs
 
 function start-watching tid
   log "start watching #tid"
-  Assert.equal pwd!, Dir.ROOT
+  Assert.equal pwd!, Dir.SRC
   pat = (t = tasks[tid]).pat or "*.#{t.ixt}"
   dirs = "#{Dirname.SITE},#{Dirname.TASK}"
   w = t.watcher = Choki.watch [ "{#dirs}/**/#pat" pat ],
-    cwd:Dir.ROOT
+    cwd:Dir.SRC
     ignoreInitial:true
     ignored:t.ignore
     persistent: false
+    usePolling: true  # see github chokidar issue 884
   w.on \all _.debounce process, 500ms, leading:true trailing:false
 
   function process act, ipath

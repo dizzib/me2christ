@@ -15,10 +15,11 @@ Site   = require \./site
 
 const CHALKS = [Chalk.stripColor, Chalk.yellow, Chalk.red]
 const COMMANDS =
-  * cmd:'h    ' level:0 desc:'help  - show commands'          fn:show-help
-  * cmd:'i.d  ' level:1 desc:'install - delete node_modules'  fn:Inst.delete-modules
-  * cmd:'i.r  ' level:0 desc:'install - refresh node_modules' fn:Inst.refresh-modules
-  * cmd:'b.all' level:0 desc:'build - all'                    fn:Build.all
+  * cmd:'h  ' level:0 desc:'help  - show commands'          fn:show-help
+  * cmd:'b.a' level:0 desc:'build - all'                    fn:Build.all
+  * cmd:'i.d' level:1 desc:'install - delete node_modules'  fn:Inst.delete-modules
+  * cmd:'i.r' level:0 desc:'install - refresh node_modules' fn:Inst.refresh-modules
+  * cmd:'q  ' level:0 desc:'quit'                           fn:process.exit
 
 config.fatal  = true # shelljs doesn't raise exceptions, so set this process to die on error
 #config.silent = true # otherwise too much noise
@@ -38,7 +39,10 @@ rl = Rl.createInterface input:process.stdin, output:process.stdout
     rl.resume!
     rl.prompt!
 
-Build.on \built Dist
+Build.on \built ->
+  Dist.prepare!
+  rl.prompt!
+
 Build.start!
 Site.start!
 
