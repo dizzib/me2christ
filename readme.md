@@ -9,7 +9,7 @@ Install [node.js][nodejs] then:
     $ npm install     # install dependencies
     $ npm start       # start the task runner
 
-    me2christ > b.a    # build everything
+    me2christ > b     # build everything
 
 You should now be able to point your browser at `localhost:7777`
 
