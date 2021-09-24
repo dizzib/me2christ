@@ -26,7 +26,7 @@ devDependencies:
   livescript                  : \~1.6.0
   lodash                      : \~4.17.15
   'node-static'               : \~0.7.11
-  pug                         : \~2.0.3
+  pug                         : \~3.0.2
   'pug-cli'                   : \~1.0.0-alpha6
   shelljs                     : \~0.3.0
   'sitemap-generator'         : \~8.4.1
