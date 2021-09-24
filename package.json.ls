@@ -31,4 +31,3 @@ devDependencies:
   shelljs                     : \~0.3.0
   'sitemap-generator'         : \~8.4.1
   stylus                      : \~0.54.5
-  'wait.for'                  : \~0.6.3

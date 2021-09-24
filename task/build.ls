@@ -1,14 +1,12 @@
 Assert  = require \assert
 Choki   = require \chokidar
+Cp      = require \child_process
 Cron    = require \cron
 Emitter = require \events .EventEmitter
 Fs      = require \fs
 _       = require \lodash
 Path    = require \path
 Shell   = require \shelljs/global
-WFib    = require \wait.for .launchFiber
-W4      = require \wait.for .for
-W4m     = require \wait.for .forMethod
 Dirname = require \./constants .dirname
 Dir     = require \./constants .dir
 G       = require \./growl
@@ -59,7 +57,7 @@ module.exports = me = (new Emitter!) with
 
 ## helpers
 
-function compile t, ipath, cb
+function compile t, ipath
   Assert.equal pwd!, Dir.BUILD
   ipath-abs = Path.resolve Dir.SRC, ipath
   mkdir \-p odir = Path.dirname opath = get-opath t, ipath
@@ -67,12 +65,11 @@ function compile t, ipath, cb
   | \string =>
     cmd = t.cmd.replace(\$IN "'#ipath-abs'").replace \$OUT "'#odir'"
     log cmd
-    code, res <- exec cmd
-    log code, res if code
-    cb (if code then res else void), opath
+    Cp.execSync cmd
+    opath
   | \function =>
-    e <- t.cmd ipath-abs, opath
-    cb e, opath
+    t.cmd ipath-abs, opath
+    opath
 
 function compile-batch tid
   t = tasks[tid]
@@ -82,7 +79,7 @@ function compile-batch tid
   files = _.filter files, -> (Path.basename it).0 isnt t?mixn
   info = "#{files.length} #tid files"
   G.say "compiling #info..."
-  for f in files then W4 compile, t, Path.relative Dir.SRC, f
+  for f in files then compile t, Path.relative Dir.SRC, f
   G.ok "...done #info!"
 
 function get-opath t, ipath
@@ -112,7 +109,6 @@ function start-watching tid
 
   function process act, ipath
     log act, tid, ipath
-    <- WFib
     if (Path.basename ipath).0 is t?mixn
       try
         compile-batch \pug  # mixin must be included by top level pug
@@ -120,13 +116,13 @@ function start-watching tid
       catch e then G.err e
     else switch act
     | \add \change
-      try opath = W4 compile, t, ipath
-      catch e then return G.err e
+      try opath = compile t, ipath
+      catch e then return G.err ipath
       G.ok opath
       me.emit \built
     | \unlink
       Assert.equal pwd!, Dir.BUILD
-      try W4m Fs, \unlink opath = get-opath t, ipath
+      try Fs \unlink opath = get-opath t, ipath
       catch e then throw e unless e.code is \ENOENT # not found i.e. already deleted
       G.ok "Delete #opath"
       me.emit \built

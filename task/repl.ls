@@ -4,7 +4,6 @@ Chalk  = require \chalk
 _      = require \lodash
 Rl     = require \readline
 Shell  = require \shelljs/global
-WFib   = require \wait.for .launchFiber
 Build  = require \./build
 Consts = require \./constants
 Dir    = require \./constants .dir
@@ -31,7 +30,6 @@ for c in COMMANDS then c.display = "#{Chalk.bold CHALKS[c.level] c.cmd} #{c.desc
 rl = Rl.createInterface input:process.stdin, output:process.stdout
   ..setPrompt "#{Consts.APPNAME} >"
   ..on \line (cmd) ->
-    <- WFib
     rl.pause!
     for c in COMMANDS when cmd is c.cmd.trim!
       try c.fn!

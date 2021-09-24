@@ -12,6 +12,7 @@ dir =
   BUILD: "/#{DIRNAME.BUILD}"
   build:
     SITE: "/#{DIRNAME.BUILD}/#{DIRNAME.SITE}"
+  ROOT : \/
   SRC  : "/#{DIRNAME.SRC}"
 
 module.exports =
