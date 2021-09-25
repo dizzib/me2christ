@@ -122,7 +122,7 @@ function start-watching tid
       me.emit \built
     | \unlink
       Assert.equal pwd!, Dir.BUILD
-      try Fs \unlink opath = get-opath t, ipath
+      try Fs.unlink opath = get-opath t, ipath
       catch e then throw e unless e.code is \ENOENT # not found i.e. already deleted
       G.ok "Delete #opath"
       me.emit \built
