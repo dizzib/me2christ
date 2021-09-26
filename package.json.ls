@@ -30,4 +30,4 @@ devDependencies:
   'pug-cli'                   : \~1.0.0-alpha6
   shelljs                     : \~0.8.4
   'sitemap-generator'         : \~8.4.1
-  stylus                      : \~0.54.5
+  stylus                      : \~0.55.0
