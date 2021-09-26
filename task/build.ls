@@ -22,7 +22,7 @@ tasks  =
     xsub: 'json.js->json'
     mixn: \_
   pug:
-    cmd : "#BIN/pug --out $OUT $IN"
+    cmd : "node --trace-warnings #BIN/pug --out $OUT $IN"
     ixt : \pug
     oxt : \html
     mixn: \_
