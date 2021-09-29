@@ -1,20 +1,20 @@
 name       : \me2christ
-version    : \1.4.0
+version    : \1.5.0
 description: 'me2christ.com source code'
 private    : true
 homepage   : \https://github.com/dizzib/me2christ
 bugs       : \https://github.com/dizzib/me2christ/issues
 license:   : \MIT
-author     : \dizzib
+author     : \andrew
 repository:
   type: \git
   url : \https://github.com/dizzib/me2christ
 scripts:
-  build: '/src/task/bootstrap && node /build/task/npm/build'
-  start: '/src/task/bootstrap && node /build/task/repl'
+  build: './task/bootstrap && node /build/task/npm/build'
+  start: './task/bootstrap && node /build/task/repl'
 engines:
-  node: '>=8.16.x'
-  npm : '>=1.0.x'
+  node: '>=10.0.x'
+  npm : '>=7.0.x'
 devDependencies:
   chalk                       : \~0.4.0
   chokidar                    : \~3.2.2
