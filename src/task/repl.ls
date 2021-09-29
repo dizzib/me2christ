@@ -16,6 +16,7 @@ const CHALKS = [Chalk.stripColor, Chalk.yellow, Chalk.red]
 const COMMANDS =
   * cmd:'h ' level:0 desc:'help  - show commands'          fn:show-help
   * cmd:'b ' level:0 desc:'build - all'                    fn:Build.all
+  * cmd:'bd' level:1 desc:'build - delete'                 fn:Build.delete
   * cmd:'id' level:1 desc:'install - delete node_modules'  fn:Inst.delete-modules
   * cmd:'ir' level:0 desc:'install - refresh node_modules' fn:Inst.refresh-modules
   * cmd:'q ' level:0 desc:'QUIT'                           fn:process.exit
@@ -38,7 +39,6 @@ rl = Rl.createInterface input:process.stdin, output:process.stdout
     rl.prompt!
 
 Build.on \built ->
-  Dist.prepare!
   rl.prompt!
 
 Build.start!

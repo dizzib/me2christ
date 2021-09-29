@@ -4,9 +4,6 @@ Shell = require \shelljs/global
 Smg   = require \sitemap-generator
 
 module.exports =
-  prepare: ->
-    cp \-f pjson, Dir.ROOT if test \-e pjson = "#{Dir.BUILD}/package.json"
-
   publish-local: ->
     const DEST = \app
     log "publish to #DEST"

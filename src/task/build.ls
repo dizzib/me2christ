@@ -11,7 +11,7 @@ Dirname = require \./constants .dirname
 Dir     = require \./constants .dir
 G       = require \./growl
 
-const BIN = "#{Dir.ROOT}/node_modules/.bin"
+const BIN = "#{Dir.BUILD}/node_modules/.bin"
 
 pruner = new Cron.CronJob cronTime:'*/10 * * * *' onTick:prune-empty-dirs
 tasks  =
@@ -41,6 +41,13 @@ module.exports = me = (new Emitter!) with
       for tid of tasks then compile-batch tid
     catch e then G.err e
     me.emit \built
+
+  delete: ->
+    try
+      pushd Dir.BUILD
+      rm \-rf Dirname.SITE, Dirname.TASK
+    finally
+      popd!
 
   start: ->
     G.say 'build started'
