@@ -1,7 +1,9 @@
 #!/bin/bash
-set -e
-rm -rf /build/*
+# run from repo root dir
 
-LSC='/node_modules/.bin/lsc --debug'
-$LSC -o /build/task -c /src/task/*.ls
-$LSC -o /build/task/npm -c /src/task/npm/*.ls
+set -e
+rm -rf build/*
+
+LSC='node_modules/.bin/lsc --debug'
+$LSC -o build/task -c src/task/*.ls
+$LSC -o build/task/npm -c src/task/npm/*.ls

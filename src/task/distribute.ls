@@ -5,10 +5,10 @@ Smg   = require \sitemap-generator
 
 module.exports =
   prepare: ->
-    cp \-f pjson, Dir.SRC if test \-e pjson = "#{Dir.BUILD}/package.json"
+    cp \-f pjson, Dir.ROOT if test \-e pjson = "#{Dir.BUILD}/package.json"
 
   publish-local: ->
-    const DEST = \/app
+    const DEST = \app
     log "publish to #DEST"
     rm \-rf "#DEST/*"
     for dir in <[ src task ]> then cp \-r "#{Dir.BUILD}/#dir" DEST

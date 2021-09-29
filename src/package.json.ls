@@ -10,8 +10,8 @@ repository:
   type: \git
   url : \https://github.com/dizzib/me2christ
 scripts:
-  build: './task/bootstrap && node /build/task/npm/build'
-  start: './task/bootstrap && node /build/task/repl'
+  build: 'src/task/bootstrap && node build/task/npm/build'
+  start: 'src/task/bootstrap && node build/task/repl'
 engines:
   node: '>=10.0.x'
   npm : '>=7.0.x'

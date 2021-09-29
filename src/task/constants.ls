@@ -8,12 +8,14 @@ const DIRNAME =
   TASK : \task
   TEST : \test
 
+root = process.env.PWD
+
 dir =
-  BUILD: "/#{DIRNAME.BUILD}"
+  BUILD: "#root/#{DIRNAME.BUILD}"
   build:
-    SITE: "/#{DIRNAME.BUILD}/#{DIRNAME.SITE}"
-  ROOT : \/
-  SRC  : "/#{DIRNAME.SRC}"
+    SITE: "#root/#{DIRNAME.BUILD}/#{DIRNAME.SITE}"
+  ROOT : root
+  SRC  : "#root/#{DIRNAME.SRC}"
 
 module.exports =
   APPNAME: \me2christ

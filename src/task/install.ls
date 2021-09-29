@@ -4,7 +4,7 @@ Dir    = require \./constants .dir
 
 module.exports =
   delete-modules: ->
-    dir = "/node_modules"
+    dir = "#{Dir.ROOT}/node_modules"
     log "delete #dir/*"
     rm \-rf "#dir/*"
 

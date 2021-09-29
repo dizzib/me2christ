@@ -11,7 +11,7 @@ Dirname = require \./constants .dirname
 Dir     = require \./constants .dir
 G       = require \./growl
 
-const BIN = "/node_modules/.bin"
+const BIN = "#{Dir.ROOT}/node_modules/.bin"
 
 pruner = new Cron.CronJob cronTime:'*/10 * * * *' onTick:prune-empty-dirs
 tasks  =
