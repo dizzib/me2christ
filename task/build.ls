@@ -40,6 +40,7 @@ module.exports = me = (new Emitter!) with
     try
       for tid of tasks then compile-batch tid
     catch e then G.err e
+    me.emit \built
 
   start: ->
     G.say 'build started'
