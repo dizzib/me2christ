@@ -7,7 +7,7 @@
 Install [node.js][nodejs] then:
 
     $ git clone --branch=dev https://github.com/dizzib/me2christ.git
-    $ cd me2christ
+    $ cd me2christ/build
     $ npm install     # install dependencies
     $ npm start       # start the task runner
 
