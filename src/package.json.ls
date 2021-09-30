@@ -24,7 +24,7 @@ devDependencies:
   'jstransformer-markdown-it' : \~2.1.0
   'jstransformer-stylus'      : \~1.5.0
   livescript                  : \~1.6.0
-  lodash                      : \~4.17.15
+  lodash                      : \~4.17.21
   'node-static'               : \~0.7.11
   pug                         : \~3.0.2
   'pug-cli'                   : \~1.0.0-alpha6
