@@ -7,7 +7,6 @@ Shell  = require \shelljs/global
 Build  = require \./build
 Consts = require \./constants
 Dir    = require \./constants .dir
-Dist   = require \./distribute
 G      = require \./growl
 Inst   = require \./install
 Site   = require \./site
