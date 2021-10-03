@@ -1,0 +1,7 @@
+[build]
+  base   ="build"
+  publish="build/site"
+  command="npm run build"
+
+[[plugins]]
+package = "@netlify/plugin-sitemap"
