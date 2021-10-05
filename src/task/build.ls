@@ -22,7 +22,7 @@ tasks  =
     xsub: 'json.js->json'
     mixn: \_
   pug:
-    cmd : "node --trace-warnings #BIN/pug --out $OUT $IN"
+    cmd : "#BIN/pug -O '{\"livereload\":#{env.M2C_LIVE_RELOAD}}' --out $OUT $IN"
     ixt : \pug
     oxt : \html
     mixn: \_
