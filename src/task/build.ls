@@ -97,7 +97,7 @@ function get-opath t, ipath
   p.replace xsub.0, xsub.1
 
 function prune-empty-dirs
-  unless pwd! is Dir.BUILD then return log 'bypass prune-empty-dirs'
+  return unless pwd! is Dir.BUILD
   Assert.equal pwd!, Dir.BUILD
   code, out <- exec "find . -type d -empty -delete"
   G.err "prune failed: #code #out" if code
