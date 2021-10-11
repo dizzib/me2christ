@@ -5,3 +5,7 @@
 
 [[plugins]]
 package = "@netlify/plugin-sitemap"
+
+# submit sitemap must run after generate sitemap
+[[context.production.plugins]]
+package = "netlify-plugin-submit-sitemap
