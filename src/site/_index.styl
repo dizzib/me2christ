@@ -5,23 +5,24 @@ body
   color       white
 
 iframe
-  width 100%
-  top 5px
+  height        calc(100vw * 215/560)
   margin-bottom -5px
-  height calc(100vw * 215/560)
+  top           5px
+  width         100%
 
 .light
+  height      100%
   margin      0
   position    fixed
   top         0
-  height      100%
-  width       100%
   transform   scale(0, 0)
+  width       100%
   z-index     -1
 
+.light  // alignment
+  align-items     center
   display         flex
   justify-content center
-  align-items     center
 
 .intro
   margin-bottom 5vmin
@@ -37,9 +38,9 @@ iframe
 
   .verse
     color         white
-    text-align    center
     font-family   serif
     font-size     10vmin
+    text-align    center
 
     .ref
       color       #aaa
