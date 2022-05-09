@@ -32,7 +32,7 @@ tasks  =
     ixt : '{css,eot,gif,html,jpg,js,mak,otf,pem,png,svg,ttf,txt,woff,woff2,xml}'
   stylus:
     cmd : "#BIN/stylus --out $OUT $IN"
-    lint: "#BIN/stlint --config #{Dir.SRC}/task/.stlint.json $IN"
+    lint: "#BIN/stylelint --config #{Dir.SRC}/task/.stylelintrc.js --custom-syntax #NMD/stylelint-plugin-stylus/custom-syntax $IN"
     ixt : \styl
     oxt : \css
     mixn: \_
