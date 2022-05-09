@@ -12,30 +12,29 @@ body.modal-open
     filter    blur(4px)
 
 .modal
-  display    none
-  position   fixed
-  left       0
-  top        0
-  height     100%
-  width      100%
   background rgba(0, 0, 0, 0.5)
+  display    none
+  height     100%
+  left       0
+  position   fixed
+  top        0
+  width      100%
 
 .modal:target
+  align-items     center
   display         flex
   justify-content center
-  align-items     center
 
 .modal-dialog
+  background      white
+  border-radius   5vmin
+  color           black
   display         flex
   flex-direction  column
-  overflow        auto
-  max-height      75%
-  width           75%
-
-  background      white
-  color           black
-  border-radius   5vmin
   font-size       5vmin
+  max-height      75%
+  overflow        auto
+  width           75%
 
 .modal-head
   border-bottom   1px solid
