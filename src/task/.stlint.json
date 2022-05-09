@@ -1,0 +1,22 @@
+{
+  "reporter": "raw",
+  "watch": false,
+  "rules": {
+    "color": false,
+    "depthControl": {
+      "indentPref": 2
+    },
+    "quotePref": [ "single" ],
+    "sortOrder": {
+      "conf": "alphabetical"
+    },
+    "useMixinInsteadUnit": false
+  },
+  "stylusParserOptions": {},
+  "reportOptions": {
+    "columnSplitter": " | ",
+    "maxWidth": 30,
+    "minWidth": 30,
+    "truncate": false
+  }
+}

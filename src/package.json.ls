@@ -30,4 +30,5 @@ devDependencies:
   pug                         : \~3.0.2
   'pug-cli'                   : \~1.0.0-alpha6
   shelljs                     : \~0.8.4
+  stlint                      : \~1.0.65
   stylus                      : \~0.55.0

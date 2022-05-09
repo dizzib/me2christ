@@ -11,7 +11,8 @@ Dirname = require \./constants .dirname
 Dir     = require \./constants .dir
 G       = require \./growl
 
-const BIN = "#{Dir.BUILD}/node_modules/.bin"
+const NMD = "#{Dir.BUILD}/node_modules"
+const BIN = "#NMD/.bin"
 
 pruner = new Cron.CronJob cronTime:'*/10 * * * *' onTick:prune-empty-dirs
 tasks  =
@@ -31,6 +32,7 @@ tasks  =
     ixt : '{css,eot,gif,html,jpg,js,mak,otf,pem,png,svg,ttf,txt,woff,woff2,xml}'
   stylus:
     cmd : "#BIN/stylus --out $OUT $IN"
+    lint: "#BIN/stlint --config #{Dir.SRC}/task/.stlint.json $IN"
     ixt : \styl
     oxt : \css
     mixn: \_
@@ -96,6 +98,13 @@ function get-opath t, ipath
   return p unless (xsub = t.xsub?split '->')?
   p.replace xsub.0, xsub.1
 
+function lint t, ipath
+  return unless t.lint
+  ipath-abs = Path.resolve Dir.SRC, ipath
+  cmd = t.lint.replace(\$IN "'#ipath-abs'")
+  log cmd
+  try Cp.execSync cmd, stdio:\inherit catch err
+
 function prune-empty-dirs
   return unless pwd! is Dir.BUILD
   Assert.equal pwd!, Dir.BUILD
@@ -120,6 +129,7 @@ function start-watching tid
     if (Path.basename ipath).0 is t?mixn
       try
         compile-batch \pug  # mixin must be included by top level pug
+        lint t, ipath
         me.emit \built
       catch e then G.err e
     else switch act
