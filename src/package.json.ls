@@ -30,6 +30,7 @@ devDependencies:
   'postcss-syntax'            : \~0.36.2  # required for stylelint-plugin-stylus
   pug                         : \~3.0.2
   'pug-cli'                   : \~1.0.0-alpha6
+  'pug-lint'                  : \~2.6.0
   shelljs                     : \~0.8.4
   stylelint                   : \~14.8.2
   'stylelint-order'           : \~5.0.0

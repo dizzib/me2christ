@@ -1,4 +1,5 @@
 Assert  = require \assert
+Chalk   = require \chalk
 Choki   = require \chokidar
 Cp      = require \child_process
 Cron    = require \cron
@@ -24,6 +25,7 @@ tasks  =
     mixn: \_
   pug:
     cmd : "#BIN/pug -O '{\"livereload\":#{env.M2C_LIVE_RELOAD}}' --out $OUT $IN"
+    lint: "#BIN/pug-lint --config #{Dir.SRC}/task/.puglintrc.js $IN"
     ixt : \pug
     oxt : \html
     mixn: \_
@@ -74,7 +76,7 @@ function compile t, ipath
   switch typeof t.cmd
   | \string =>
     cmd = t.cmd.replace(\$IN "'#ipath-abs'").replace \$OUT "'#odir'"
-    log cmd
+    log Chalk.blue cmd
     Cp.execSync cmd
     opath
   | \function =>
@@ -102,7 +104,7 @@ function lint t, ipath
   return unless t.lint
   ipath-abs = Path.resolve Dir.SRC, ipath
   cmd = t.lint.replace(\$IN "'#ipath-abs'")
-  log cmd
+  log Chalk.gray cmd
   try Cp.execSync cmd, stdio:\inherit catch err
 
 function prune-empty-dirs
@@ -128,13 +130,15 @@ function start-watching tid
     log act, tid, ipath
     if (Path.basename ipath).0 is t?mixn
       try
-        compile-batch \pug  # mixin must be included by top level pug
         lint t, ipath
+        compile-batch \pug  # mixin must be included by top level pug
         me.emit \built
       catch e then G.err e
     else switch act
     | \add \change
-      try opath = compile t, ipath
+      try
+        lint t, ipath
+        opath = compile t, ipath
       catch e then return G.err ipath
       G.ok opath
       me.emit \built
