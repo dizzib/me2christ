@@ -15,6 +15,9 @@ const CFG = "#{Dir.SRC}/task/lint"
 const MOD = "#{Dir.BUILD}/node_modules"
 
 tasks =
+  livescript:
+    cmd: "#MOD/.bin/ls-lint --config #CFG/ls-lint.lson $IN"
+    ixt: \ls
   pug:
     cmd: "#MOD/.bin/pug-lint --config #CFG/.pug-lintrc.js $IN"
     ixt: \pug
@@ -49,11 +52,11 @@ function lint t, ipath
 function lint-batch tid
   t = tasks[tid]
   w = t.watcher.getWatched!
-  files = [ f for path, names of w for name in names
-    when test \-f f = Path.resolve Dir.SRC, path, name ]
+  files = [f for path, names of w for name in names
+    when test \-f f = Path.resolve Dir.SRC, path, name]
   info = "#{files.length} #tid files"
   G.say "linting #info..."
-  for f in files then lint t, Path.relative Dir.SRC, f
+  for f in files then lint t, Path.relative(Dir.SRC, f)
   G.ok "...done #info!"
 
 function start-watching tid
@@ -61,7 +64,7 @@ function start-watching tid
   Assert.equal pwd!, Dir.SRC
   pat = (t = tasks[tid]).pat or "*.#{t.ixt}"
   dirs = "#{Dirname.SITE},#{Dirname.TASK}"
-  w = t.watcher = Choki.watch [ "{#dirs}/**/#pat" pat ],
+  w = t.watcher = Choki.watch ["{#dirs}/**/#pat" pat],
     cwd:Dir.SRC
     ignoreInitial:true
     ignored:t.ignore
