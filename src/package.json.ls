@@ -31,7 +31,6 @@ devDependencies:
   pug                         : \~3.0.2
   'pug-cli'                   : \~1.0.0-alpha6
   'pug-lint'                  : \~2.6.0
-  '@lcooper/pug-lint-config'  : \~1.0.0
   shelljs                     : \~0.8.4
   stylelint                   : \~14.8.2
   'stylelint-order'           : \~5.0.0
