@@ -49,11 +49,7 @@ Site.start!
 _.delay show-help, 500ms
 _.delay (-> rl.prompt!), 750ms
 
-# helpers
-
-function build-all
-  try Build.all!
-  catch e then G.err e
+## helpers
 
 function show-help
   for c in COMMANDS then log c.display
