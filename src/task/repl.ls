@@ -9,6 +9,7 @@ Consts = require \./constants
 Dir    = require \./constants .dir
 G      = require \./growl
 Inst   = require \./install
+Lint   = require \./lint
 Site   = require \./site
 
 const CHALKS = [Chalk.stripColor, Chalk.yellow, Chalk.red]
@@ -18,6 +19,7 @@ const COMMANDS =
   * cmd:'bd' level:1 desc:'build - delete'                 fn:Build.delete
   * cmd:'id' level:1 desc:'install - delete node_modules'  fn:Inst.delete-modules
   * cmd:'ir' level:0 desc:'install - refresh node_modules' fn:Inst.refresh-modules
+  * cmd:'l ' level:0 desc:'lint - all                    ' fn:Lint.all
   * cmd:'q ' level:0 desc:'QUIT'                           fn:process.exit
 
 config.fatal  = true # shelljs doesn't raise exceptions, so set this process to die on error
@@ -40,6 +42,7 @@ rl = Rl.createInterface input:process.stdin, output:process.stdout
 Build.on \built ->
   rl.prompt!
 
+Lint.start!
 Build.start!
 Site.start!
 

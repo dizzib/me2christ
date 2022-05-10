@@ -12,8 +12,7 @@ Dirname = require \./constants .dirname
 Dir     = require \./constants .dir
 G       = require \./growl
 
-const NMD = "#{Dir.BUILD}/node_modules"
-const BIN = "#NMD/.bin"
+const BIN = "#{Dir.BUILD}/node_modules/.bin"
 
 pruner = new Cron.CronJob cronTime:'*/10 * * * *' onTick:prune-empty-dirs
 tasks  =
@@ -25,7 +24,6 @@ tasks  =
     mixn: \_
   pug:
     cmd : "#BIN/pug -O '{\"livereload\":#{env.M2C_LIVE_RELOAD}}' --out $OUT $IN"
-    lint: "#BIN/pug-lint --config #{Dir.SRC}/task/.pug-lintrc.js $IN"
     ixt : \pug
     oxt : \html
     mixn: \_
@@ -34,16 +32,13 @@ tasks  =
     ixt : '{css,eot,gif,html,jpg,js,mak,otf,pem,png,svg,ttf,txt,woff,woff2,xml}'
   stylus:
     cmd : "#BIN/stylus --out $OUT $IN"
-    lint: "#BIN/stylelint --config #{Dir.SRC}/task/.stylelintrc.js --custom-syntax #NMD/stylelint-plugin-stylus/custom-syntax $IN"
     ixt : \styl
     oxt : \css
     mixn: \_
 
 module.exports = me = (new Emitter!) with
   all: ->
-    try
-      for tid of tasks then compile-batch tid
-    catch e then G.err e
+    for tid of tasks then compile-batch tid
     me.emit \built
 
   delete: ->
@@ -54,7 +49,7 @@ module.exports = me = (new Emitter!) with
       popd!
 
   start: ->
-    G.say 'build started'
+    log Chalk.green 'start build'
     try
       pushd Dir.SRC
       for tid of tasks then start-watching tid
@@ -63,9 +58,9 @@ module.exports = me = (new Emitter!) with
     pruner.start!
 
   stop: ->
+    log Chalk.red 'stop build'
     pruner.stop!
     for , t of tasks then t.watcher?close!
-    G.say 'build stopped'
 
 ## helpers
 
@@ -95,13 +90,6 @@ function get-opath t, ipath
   return p unless (xsub = t.xsub?split '->')?
   p.replace xsub.0, xsub.1
 
-function lint t, ipath
-  return unless t.lint
-  ipath-abs = Path.resolve Dir.SRC, ipath
-  cmd = t.lint.replace(\$IN "'#ipath-abs'")
-  log Chalk.gray cmd
-  try Cp.execSync cmd, stdio:\inherit catch err
-
 function prune-empty-dirs
   return unless pwd! is Dir.BUILD
   Assert.equal pwd!, Dir.BUILD
@@ -122,18 +110,15 @@ function start-watching tid
   w.on \all _.debounce process, 500ms, leading:true trailing:false
 
   function process act, ipath
-    log act, tid, ipath
+    # log act, tid, ipath
     if (Path.basename ipath).0 is t?mixn
       try
-        lint t, ipath
         compile-batch \pug  # mixin must be included by top level pug
         me.emit \built
       catch e then G.err e
     else switch act
     | \add \change
-      try
-        lint t, ipath
-        opath = compile t, ipath
+      try opath = compile t, ipath
       catch e then return G.err ipath
       G.ok opath
       me.emit \built
