@@ -16,18 +16,23 @@ const MOD = "#{Dir.BUILD}/node_modules"
 
 tasks =
   livescript:
-    cmd: "#MOD/.bin/ls-lint --config #CFG/ls-lint.lson $IN"
-    ixt: \ls
+    cmd : "#MOD/.bin/ls-lint --config #CFG/ls-lint.lson $IN"
+    glob: true
+    ixt : \ls
   pug:
-    cmd: "#MOD/.bin/pug-lint --config #CFG/.pug-lintrc.js $IN"
-    ixt: \pug
+    cmd : "#MOD/.bin/pug-lint --config #CFG/.pug-lintrc.js $IN"
+    glob: false
+    ixt : \pug
   stylus:
-    cmd: "#MOD/.bin/stylelint --config #CFG/.stylelintrc.js --custom-syntax #MOD/stylelint-plugin-stylus/custom-syntax $IN"
-    ixt: \styl
+    cmd : "#MOD/.bin/stylelint --config #CFG/.stylelintrc.js --custom-syntax #MOD/stylelint-plugin-stylus/custom-syntax $IN"
+    glob: true
+    ixt : \styl
 
 module.exports = me = (new Emitter!) with
   all: ->
-    for tid of tasks then lint-batch tid
+    for tid of tasks then
+      t = tasks[tid]
+      if t.glob then lint-glob t else lint-batch t
 
   start: ->
     log Chalk.green 'start lint'
@@ -49,15 +54,19 @@ function lint t, ipath
   log Chalk.gray cmd
   try Cp.execSync cmd, stdio:\inherit catch err
 
-function lint-batch tid
-  t = tasks[tid]
+function lint-batch t
   w = t.watcher.getWatched!
   files = [f for path, names of w for name in names
     when test \-f f = Path.resolve Dir.SRC, path, name]
-  info = "#{files.length} #tid files"
+  info = "#{files.length} #{t.ixt} files"
   G.say "linting #info..."
   for f in files then lint t, Path.relative(Dir.SRC, f)
   G.ok "...done #info!"
+
+function lint-glob t
+  cmd = t.cmd.replace(\$IN "'#{Dir.SRC}/**/*.#{t.ixt}'")
+  log Chalk.gray cmd
+  try Cp.execSync cmd, stdio:\inherit catch err
 
 function start-watching tid
   log "start watching #tid"
