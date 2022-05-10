@@ -55,7 +55,7 @@ module.exports = me = (new Emitter!) with
 ## helpers
 
 function get-cmd t, ipath-abs
-  "#MOD/.bin/#{t.bin} --config #CFG/#{t.cfg} #{t.opts} #{ipath-abs}"
+  "#MOD/.bin/#{t.bin} --config #CFG/#{t.cfg} #{t.opts} '#{ipath-abs}'"  # must quote for glob
 
 function lint t, ipath
   cmd = get-cmd t, Path.resolve(Dir.SRC, ipath)
