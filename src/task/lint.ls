@@ -16,17 +16,23 @@ const MOD = "#{Dir.BUILD}/node_modules"
 
 tasks =
   livescript:
-    cmd : "#MOD/.bin/ls-lint --config #CFG/ls-lint.lson $IN"
+    bin : \ls-lint
+    cfg : \ls-lint.lson
     glob: true
     ixt : \ls
+    opts: ''
   pug:
-    cmd : "#MOD/.bin/pug-lint --config #CFG/.pug-lintrc.js $IN"
+    bin : \pug-lint
+    cfg : \.pug-lintrc.js
     glob: false
     ixt : \pug
+    opts: ''
   stylus:
-    cmd : "#MOD/.bin/stylelint --config #CFG/.stylelintrc.js --custom-syntax #MOD/stylelint-plugin-stylus/custom-syntax $IN"
+    bin : \stylelint
+    cfg : \.stylelintrc.js
     glob: true
     ixt : \styl
+    opts: "--config-basedir #MOD --custom-syntax #MOD/stylelint-plugin-stylus/custom-syntax"
 
 module.exports = me = (new Emitter!) with
   all: ->
@@ -48,9 +54,11 @@ module.exports = me = (new Emitter!) with
 
 ## helpers
 
+function get-cmd t, ipath-abs
+  "#MOD/.bin/#{t.bin} --config #CFG/#{t.cfg} #{t.opts} #{ipath-abs}"
+
 function lint t, ipath
-  ipath-abs = Path.resolve Dir.SRC, ipath
-  cmd = t.cmd.replace(\$IN "'#ipath-abs'")
+  cmd = get-cmd t, Path.resolve(Dir.SRC, ipath)
   log Chalk.gray cmd
   try Cp.execSync cmd, stdio:\inherit catch err
 
@@ -64,7 +72,7 @@ function lint-batch t
   G.ok "...done #info!"
 
 function lint-glob t
-  cmd = t.cmd.replace(\$IN "'#{Dir.SRC}/**/*.#{t.ixt}'")
+  cmd = get-cmd t, "#{Dir.SRC}/**/*.#{t.ixt}"
   log Chalk.gray cmd
   try Cp.execSync cmd, stdio:\inherit catch err
 
