@@ -5,8 +5,8 @@ Dir    = require \./constants .dir
 module.exports =
   delete-modules: ->
     dir = "#{Dir.BUILD}/node_modules"
-    log "delete #dir/*"
-    rm \-rf "#dir/*"
+    log "delete #dir"
+    rm \-rf "#dir"
 
   refresh-modules: ->
     pushd Dir.BUILD
