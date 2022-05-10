@@ -32,7 +32,7 @@ devDependencies:
   pug                         : \~3.0.2
   'pug-cli'                   : \~1.0.0-alpha6
   'pug-lint'                  : \~2.6.0
-  shelljs                     : \~0.8.4
+  shelljs                     : \~0.8.5
   'stylelint-order'           : \~5.0.0
   'stylelint-plugin-stylus'   : \~0.13.1
   stylus                      : \~0.55.0
