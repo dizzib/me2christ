@@ -17,7 +17,7 @@ function send label, item, opts = {}
 
 module.exports =
   alert: (err, opts)  -> send \error err, (sticky:true) <<< opts
-  err  : (err, opts)  -> send \error err, opts
+  err  : (err, opts)  -> send \error err, (nolog:true) <<< opts
   ok   : (text, opts) -> send \success text, opts
   say  : (text, opts) -> send \info text, opts
 
