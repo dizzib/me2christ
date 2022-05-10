@@ -11,15 +11,15 @@ Dirname = require \./constants .dirname
 Dir     = require \./constants .dir
 G       = require \./growl
 
-const NMD = "#{Dir.BUILD}/node_modules"
-const BIN = "#NMD/.bin"
+const CFG = "#{Dir.SRC}/task/lint"
+const MOD = "#{Dir.BUILD}/node_modules"
 
 tasks =
   pug:
-    cmd: "#BIN/pug-lint --config #{Dir.SRC}/task/.pug-lintrc.js $IN"
+    cmd: "#MOD/.bin/pug-lint --config #CFG/.pug-lintrc.js $IN"
     ixt: \pug
   stylus:
-    cmd: "#BIN/stylelint --config #{Dir.SRC}/task/.stylelintrc.js --custom-syntax #NMD/stylelint-plugin-stylus/custom-syntax $IN"
+    cmd: "#MOD/.bin/stylelint --config #CFG/.stylelintrc.js --custom-syntax #MOD/stylelint-plugin-stylus/custom-syntax $IN"
     ixt: \styl
 
 module.exports = me = (new Emitter!) with
