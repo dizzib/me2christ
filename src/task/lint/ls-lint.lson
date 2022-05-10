@@ -194,10 +194,10 @@ naming-conventions:
   level: \error
   value:
     class: \PascalCase
-    property: \ignore
-    function: \chain-case
-    variable: \ignore
     constant: \SNAKE_CASE
+    function: \chain-case
+    property: \ignore
+    variable: \ignore
 
 # Use 'void' instead of 'undefined'
 # [note] Not supported yet
