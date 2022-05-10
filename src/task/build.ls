@@ -25,7 +25,7 @@ tasks  =
     mixn: \_
   pug:
     cmd : "#BIN/pug -O '{\"livereload\":#{env.M2C_LIVE_RELOAD}}' --out $OUT $IN"
-    lint: "#BIN/pug-lint --config #{Dir.SRC}/task/.puglintrc.js $IN"
+    lint: "#BIN/pug-lint --config #{Dir.SRC}/task/.pug-lintrc.js $IN"
     ixt : \pug
     oxt : \html
     mixn: \_
