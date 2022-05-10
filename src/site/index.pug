@@ -1,4 +1,4 @@
-extends _base
+extends _base.pug
 
 append head
   style: include:stylus _index.styl
@@ -24,13 +24,13 @@ block main
 
   p To begin this amazing journey you need to...
 
-  include gospel/_repent
-  include gospel/_baptism
-  include gospel/_receive
+  include gospel/_repent.pug
+  include gospel/_baptism.pug
+  include gospel/_receive.pug
 
   p Please contact me, Andrew, to learn more.
 
-  include _contact
+  include _contact.pug
 
   p Grace, peace and love to you from our Lord Jesus Christ.
 
