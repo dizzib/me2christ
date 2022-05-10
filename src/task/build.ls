@@ -76,8 +76,8 @@ function compile t, ipath
 function compile-batch tid
   t = tasks[tid]
   w = t.watcher.getWatched!
-  files = [ f for path, names of w for name in names
-    when test \-f f = Path.resolve Dir.SRC, path, name ]
+  files = [f for path, names of w for name in names
+    when test \-f f = Path.resolve Dir.SRC, path, name]
   files = _.filter files, -> (Path.basename it).0 isnt t?mixn
   info = "#{files.length} #tid files"
   G.say "compiling #info..."
@@ -101,7 +101,7 @@ function start-watching tid
   Assert.equal pwd!, Dir.SRC
   pat = (t = tasks[tid]).pat or "*.#{t.ixt}"
   dirs = "#{Dirname.SITE},#{Dirname.TASK}"
-  w = t.watcher = Choki.watch [ "{#dirs}/**/#pat" pat ],
+  w = t.watcher = Choki.watch ["{#dirs}/**/#pat" pat],
     cwd:Dir.SRC
     ignoreInitial:true
     ignored:t.ignore

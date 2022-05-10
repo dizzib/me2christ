@@ -1,9 +1,9 @@
 <- document.addEventListener \DOMContentLoaded
 
 const DARK    = [0] * 5
-const RAMP-UP = [x / 6 for x to 30]
+const RAMP_UP = [x / 6 for x to 30]
 const LIGHT   = [5] * 15
-const INTRO   = DARK ++ RAMP-UP ++ LIGHT
+const INTRO   = DARK ++ RAMP_UP ++ LIGHT
 const OUTRO   = INTRO.slice!reverse!
 const SCALES  = INTRO ++ OUTRO
 
