@@ -166,7 +166,7 @@ no-plus-for-concatenation: \warning
 # Variables
 
 # Not rewriting variables
-no-variables: \warning
+no-variables: \ignore
 
 #------------------------------------------------------------------------------
 # Identifier
