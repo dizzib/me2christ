@@ -73,15 +73,10 @@ function compile t, ipath
   Assert.equal pwd!, Dir.BUILD
   ipath-abs = Path.resolve Dir.SRC, ipath
   mkdir \-p odir = Path.dirname opath = get-opath t, ipath
-  switch typeof t.cmd
-  | \string =>
-    cmd = t.cmd.replace(\$IN "'#ipath-abs'").replace \$OUT "'#odir'"
-    log Chalk.blue cmd
-    Cp.execSync cmd
-    opath
-  | \function =>
-    t.cmd ipath-abs, opath
-    opath
+  cmd = t.cmd.replace(\$IN "'#ipath-abs'").replace \$OUT "'#odir'"
+  log Chalk.blue cmd
+  Cp.execSync cmd
+  opath
 
 function compile-batch tid
   t = tasks[tid]
