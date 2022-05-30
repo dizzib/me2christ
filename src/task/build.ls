@@ -66,9 +66,8 @@ module.exports = me = (new Emitter!) with
 
 function compile t, ipath
   Assert.equal pwd!, Dir.BUILD
-  ipath-abs = Path.resolve Dir.SRC, ipath
   mkdir \-p odir = Path.dirname opath = get-opath t, ipath
-  cmd = t.cmd.replace(\$IN "'#ipath-abs'").replace \$OUT "'#odir'"
+  cmd = t.cmd.replace(\$IN "'#ipath'").replace \$OUT "'#odir'"
   log Chalk.blue cmd
   Cp.execSync cmd
   opath
@@ -81,7 +80,7 @@ function compile-batch tid
   files = _.filter files, -> (Path.basename it).0 isnt t?mixn
   info = "#{files.length} #tid files"
   G.say "compiling #info..."
-  for f in files then compile t, Path.relative Dir.SRC, f
+  for f in files then compile t, f
   G.ok "...done #info!"
 
 function get-opath t, ipath
@@ -106,11 +105,13 @@ function start-watching tid
     ignoreInitial:true
     ignored:t.ignore
     persistent: false
-    usePolling: true  # see github chokidar issue 884
-  w.on \all _.debounce process, 500ms, leading:true trailing:false
+  # workaround chokidar issue #1084 by using 'raw' rather than 'add'
+  w.on \raw _.debounce process, 50ms, leading:false trailing:true
 
-  function process act, ipath
-    # log act, tid, ipath
+  function process act, fname, details
+    return unless _.endsWith fname, ".#{t.ixt}"
+    ipath = Path.resolve(details.watchedPath, fname)
+    log Chalk.yellow(\build), act, tid, ipath
     if (Path.basename ipath).0 is t?mixn
       try
         compile-batch \pug  # mixin must be included by top level pug
