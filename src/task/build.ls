@@ -111,7 +111,7 @@ function start-watching tid
   function process act, fname, details
     return unless _.endsWith fname, ".#{t.ixt}"
     ipath = Path.resolve(details.watchedPath, fname)
-    log Chalk.yellow(\build), act, tid, ipath
+    # log Chalk.yellow(\build), act, tid, ipath
     if (Path.basename ipath).0 is t?mixn
       try
         compile-batch \pug  # mixin must be included by top level pug
