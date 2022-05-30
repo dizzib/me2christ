@@ -54,11 +54,11 @@ module.exports = me = (new Emitter!) with
 
 ## helpers
 
-function get-cmd t, ipath-abs
-  "#MOD/.bin/#{t.bin} --config #CFG/#{t.cfg} #{t.opts} '#{ipath-abs}'"  # must quote for glob
+function get-cmd t, ipath
+  "#MOD/.bin/#{t.bin} --config #CFG/#{t.cfg} #{t.opts} '#{ipath}'"  # must quote for glob
 
 function lint t, ipath
-  cmd = get-cmd t, Path.resolve(Dir.SRC, ipath)
+  cmd = get-cmd t, ipath
   log Chalk.gray cmd
   try Cp.execSync cmd, stdio:\inherit catch err
 
@@ -68,7 +68,7 @@ function lint-batch t
     when test \-f f = Path.resolve Dir.SRC, path, name]
   info = "#{files.length} #{t.ixt} files"
   G.say "linting #info..."
-  for f in files then lint t, Path.relative(Dir.SRC, f)
+  for f in files then lint t, f
   G.ok "...done #info!"
 
 function lint-glob t
@@ -86,11 +86,13 @@ function start-watching tid
     ignoreInitial:true
     ignored:t.ignore
     persistent: false
-    usePolling: true  # see github chokidar issue 884
-  w.on \all _.debounce process, 500ms, leading:true trailing:false
+  # workaround chokidar issue #1084 by using 'raw' rather than 'add'
+  w.on \raw _.debounce process, 50ms, leading:false trailing:true
 
-  function process act, ipath
-    # log act, tid, ipath
+  function process act, fname, details
+    return unless _.endsWith fname, ".#{t.ixt}"
+    ipath = Path.resolve(details.watchedPath, fname)
+    # log Chalk.yellow(\lint), act, tid, ipath
     switch act
     | \add \change
       try lint t, ipath
