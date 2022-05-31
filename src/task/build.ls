@@ -11,8 +11,10 @@ Shell   = require \shelljs/global
 Dirname = require \./constants .dirname
 Dir     = require \./constants .dir
 G       = require \./growl
+Pjson   = require \../package.json
 
 const BIN = "#{Dir.BUILD}/node_modules/.bin"
+const PUGOPTS = "{livereload:'#{env.M2C_LIVE_RELOAD}', version:'#{Pjson.version}'}"
 
 pruner = new Cron.CronJob cronTime:'*/10 * * * *' onTick:prune-empty-dirs
 tasks  =
@@ -23,7 +25,7 @@ tasks  =
     xsub: 'json.js->json'
     mixn: \_
   pug:
-    cmd : "#BIN/pug -O '{\"livereload\":#{env.M2C_LIVE_RELOAD}}' --out $OUT $IN"
+    cmd : "#BIN/pug -O \"#PUGOPTS\" --out $OUT $IN"
     ixt : \pug
     oxt : \html
     mixn: \_
