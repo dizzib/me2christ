@@ -1,4 +1,5 @@
 Assert = require \assert
+Path   = require \path
 Shell  = require \shelljs/global
 
 const DIRNAME =
@@ -11,11 +12,11 @@ const DIRNAME =
 root = process.env.PWD
 
 dir =
-  BUILD: "#root/#{DIRNAME.BUILD}"
+  BUILD: Path.resolve root, DIRNAME.BUILD
   build:
-    SITE: "#root/#{DIRNAME.BUILD}/#{DIRNAME.SITE}"
+    SITE: Path.resolve root, DIRNAME.BUILD, DIRNAME.SITE
   ROOT : root
-  SRC  : "#root/#{DIRNAME.SRC}"
+  SRC  : Path.resolve root, DIRNAME.SRC
 
 module.exports =
   APPNAME: \me2christ

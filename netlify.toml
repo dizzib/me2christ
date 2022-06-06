@@ -1,7 +1,6 @@
 [build]
-base = "build"
 publish = "build/site"
-command = "npm run build"
+command = "bootstrap"
 
 [[plugins]]
 package = "@netlify/plugin-sitemap"

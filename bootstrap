@@ -1,9 +1,17 @@
 #!/bin/bash
 
-set -e
-rm -rf build/site build/task
+B=build
+S=src
+LSC='./node_modules/.bin/lsc --debug'
 
-LSC='build/node_modules/.bin/lsc --debug'
-$LSC -o build -c src/*.ls
-$LSC -o build/task -c src/task/*.ls
-$LSC -o build/task/npm -c src/task/npm/*.ls
+mkdir -p $B \
+  && cd $B \
+  && rm -rf * node_modules/.* 2> /dev/null \
+  && npm install livescript \
+  && $LSC -o . -c ../$S/*.ls \
+  && $LSC -o ./task -c ../$S/task/*.ls \
+  && $LSC -o ./task/npm -c ../$S/task/npm/*.ls \
+  && npm install \
+  && chmod +x node_modules/pug-cli/index.js \
+  && chmod +x node_modules/pug-lint/bin/pug-lint \
+  && npm run build
