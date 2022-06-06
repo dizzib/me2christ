@@ -7,9 +7,8 @@
 Install [node.js][nodejs] then:
 
     $ git clone --branch=dev https://github.com/dizzib/me2christ.git
-    $ cd me2christ
-    $ . bootstrap     # build toolchain
-    $ npm start       # start site
+    $ . me2christ/bootstrap
+    $ npm start
 
 You should now be able to point your browser at `localhost:7777`
 
