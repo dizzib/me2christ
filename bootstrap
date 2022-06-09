@@ -8,6 +8,6 @@ mkdir -p build \
   && yarn add livescript \
   && $LSC -o . -c ../src/*.ls \
   && $LSC -o ./task -c ../src/task/*.ls \
-  && $LSC -o ./task/npm -c ../src/task/npm/*.ls \
+  && $LSC -o ./task/yarn -c ../src/task/yarn/*.ls \
   && yarn \
   && yarn run build
