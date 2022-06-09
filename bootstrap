@@ -4,12 +4,10 @@ LSC='./node_modules/.bin/lsc --debug'
 
 mkdir -p build \
   && cd build \
-  && rm -rf * node_modules/.* 2> /dev/null \
-  && npm install livescript \
+  && rm -rf * 2> /dev/null \
+  && yarn add livescript \
   && $LSC -o . -c ../src/*.ls \
   && $LSC -o ./task -c ../src/task/*.ls \
   && $LSC -o ./task/npm -c ../src/task/npm/*.ls \
-  && npm install \
-  && chmod +x node_modules/pug-cli/index.js \
-  && chmod +x node_modules/pug-lint/bin/pug-lint \
-  && npm run build
+  && yarn \
+  && yarn run build
