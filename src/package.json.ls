@@ -13,8 +13,7 @@ scripts:
   build: 'cd .. && node build/task/npm/build'
   start: 'cd .. && node build/task/repl'
 engines:
-  node: '>=10.0.x'
-  npm : '>=7.0.x'
+  node: '>=16.0.x'
 devDependencies:
   chalk                       : \~0.4.0
   chokidar                    : \~3.2.2
