@@ -43,13 +43,6 @@ module.exports = me = (new Emitter!) with
     for tid of tasks then compile-batch tid
     me.emit \built
 
-  delete: ->
-    try
-      pushd Dir.BUILD
-      rm \-rf Dirname.SITE, Dirname.TASK
-    finally
-      popd!
-
   start: ->
     log Chalk.green 'start build'
     try
