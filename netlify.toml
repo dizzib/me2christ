@@ -7,10 +7,10 @@ NETLIFY_USE_YARN = "true"
 NODE_VERSION = "16"
 
 [context.branch-deploy.environment]
-UMAMI_SITE_ID=653949b8-320e-49f6-b347-6761f49253f9
+UMAMI_SITE_ID="653949b8-320e-49f6-b347-6761f49253f9"
 
 [context.production.environment]
-UMAMI_SITE_ID=a9c1e975-9f06-4d42-8513-263a671f6181
+UMAMI_SITE_ID="a9c1e975-9f06-4d42-8513-263a671f6181"
 
 [[plugins]]
 package = "@netlify/plugin-sitemap"
