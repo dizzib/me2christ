@@ -11,7 +11,7 @@ html
       style: include:stylus _base.styl
       script: include:livescript _base.ls
       script: include:livescript lib/_modal.ls
-      if livereload
+      if process.env.M2C_LIVE_RELOAD
         script: include lib/_livereload.js
   body.noscript
     .root

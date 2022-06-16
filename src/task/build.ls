@@ -14,7 +14,7 @@ G       = require \./growl
 Pjson   = require \../package.json
 
 const BIN = "#{Dir.BUILD}/node_modules/.bin"
-const PUGOPTS = "{livereload:'#{env.M2C_LIVE_RELOAD}', version:'#{Pjson.version}'}"
+const PUGOPTS = "{version:'#{Pjson.version}'}"
 
 pruner = new Cron.CronJob cronTime:'*/10 * * * *' onTick:prune-empty-dirs
 tasks  =
