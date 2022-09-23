@@ -32,7 +32,7 @@ tasks =
     cfg : \.stylelintrc.js
     glob: true
     ixt : \styl
-    opts: "--config-basedir #MOD --custom-syntax #MOD/stylelint-plugin-stylus/custom-syntax"
+    opts: "--config-basedir #MOD --custom-syntax #MOD/stylelint-stylus/custom-syntax"
 
 module.exports = me = (new Emitter!) with
   all: ->

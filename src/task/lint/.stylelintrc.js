@@ -1,5 +1,5 @@
 module.exports = {
-  extends: [ "stylelint-plugin-stylus/standard", ],
+  extends: [ "stylelint-stylus/standard", ],
   plugins: [ "stylelint-order", ],
   rules: {
     "order/properties-alphabetical-order": true
