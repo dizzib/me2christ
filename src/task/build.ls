@@ -30,7 +30,7 @@ tasks  =
     oxt : \html
     mixn: \_
   static:
-    cmd : 'cp --target-directory $OUT $IN'
+    cmd : "cp --target-directory $OUT $IN"
     ixt : '{css,eot,gif,html,jpg,js,mak,otf,pem,png,svg,ttf,txt,woff,woff2,xml}'
   stylus:
     cmd : "#BIN/stylus --out $OUT $IN"
@@ -62,7 +62,7 @@ module.exports = me = (new Emitter!) with
 function compile t, ipath
   Assert.equal pwd!, Dir.BUILD
   mkdir \-p odir = Path.dirname opath = get-opath t, ipath
-  cmd = t.cmd.replace(\$IN "'#ipath'").replace \$OUT "'#odir'"
+  cmd = t.cmd.replace(\$IN ipath).replace \$OUT odir
   log Chalk.blue cmd
   Cp.execSync cmd
   opath
