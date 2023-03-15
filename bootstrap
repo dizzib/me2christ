@@ -2,7 +2,7 @@
 
 mkdir -p build \
   && cd build \
-  && rm -rf * 2> /dev/null \
+  && rm -rf ./* 2> /dev/null \
   && yarn add livescript \
   && LSC='./node_modules/.bin/lsc --debug' \
   && $LSC -o . -c ../src/*.ls \
