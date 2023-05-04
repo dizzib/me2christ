@@ -2,7 +2,6 @@ Assert  = require \assert
 Chalk   = require \chalk
 Choki   = require \chokidar
 Cp      = require \child_process
-Cron    = require \cron
 Emitter = require \events .EventEmitter
 Fs      = require \fs
 _       = require \lodash
@@ -14,7 +13,6 @@ G       = require \./growl
 
 const BIN = "#{Dir.BUILD}/node_modules/.bin"
 
-pruner = new Cron.CronJob cronTime:'*/10 * * * *' onTick:prune-empty-dirs
 tasks  =
   livescript:
     cmd : "#BIN/lsc --output $OUT $IN"
@@ -48,11 +46,9 @@ module.exports = me = (new Emitter!) with
       for tid of tasks then start-watching tid
     finally
       popd!
-    pruner.start!
 
   stop: ->
     log Chalk.red 'stop build'
-    pruner.stop!
     for , t of tasks then t.watcher?close!
 
 ## helpers
@@ -82,12 +78,6 @@ function get-opath t, ipath
   return p unless (xsub = t.xsub?split '->')?
   p.replace xsub.0, xsub.1
 
-function prune-empty-dirs
-  return unless pwd! is Dir.BUILD
-  Assert.equal pwd!, Dir.BUILD
-  code, out <- exec "find . -type d -empty -delete"
-  G.err "prune failed: #code #out" if code
-
 function start-watching tid
   log "start watching #tid"
   Assert.equal pwd!, Dir.SRC
@@ -106,7 +96,7 @@ function start-watching tid
         compile-batch \pug  # mixin must be included by top level pug
         me.emit \built
       catch e then G.err e
-    else if act in [ \add \change ]
+    else if act in [\add \change]
       try opath = compile t, ipath
       catch e then return G.err ipath
       G.ok opath

@@ -18,7 +18,6 @@ engines:
 devDependencies:
   chalk                       : \~0.4.0
   chokidar                    : \~3.2.2
-  cron                        : \~1.0.3
   growly                      : \~1.3.0
   'jstransformer-livescript'  : \~1.2.0
   'jstransformer-markdown-it' : \~2.1.0
