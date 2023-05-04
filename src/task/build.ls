@@ -97,28 +97,17 @@ function start-watching tid
     cwd:Dir.SRC
     ignoreInitial:true
     ignored:t.ignore
-    persistent: false
-  # workaround chokidar issue #1084 by using 'raw' rather than 'add'
-  w.on \raw _.debounce process, 50ms, leading:false trailing:true
-
-  function process act, fname, details
-    return unless _.endsWith fname, ".#{t.ixt}"
-    ipath = Path.resolve(details.watchedPath, fname)
+  w.on \all (act, path) ->
+    Assert _.endsWith path, ".#{t.ixt}"
+    ipath = Path.join(Dir.SRC, path)
     # log Chalk.yellow(\build), act, tid, ipath
     if (Path.basename ipath).0 is t?mixn
       try
         compile-batch \pug  # mixin must be included by top level pug
         me.emit \built
       catch e then G.err e
-    else switch act
-    | \add \change
+    else if act in [ \add \change ]
       try opath = compile t, ipath
       catch e then return G.err ipath
       G.ok opath
-      me.emit \built
-    | \unlink
-      Assert.equal pwd!, Dir.BUILD
-      try Fs.unlink opath = get-opath t, ipath
-      catch e then throw e unless e.code is \ENOENT # not found i.e. already deleted
-      G.ok "Delete #opath"
       me.emit \built
