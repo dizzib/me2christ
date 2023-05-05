@@ -4,7 +4,7 @@ command = "./bootstrap"
 
 [build.environment]
 NETLIFY_USE_YARN = "true"
-NODE_VERSION = "16"
+NODE_VERSION = "18"
 
 [[plugins]]
 package = "@netlify/plugin-sitemap"

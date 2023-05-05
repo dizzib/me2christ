@@ -4,7 +4,7 @@
 
 ## to build and run locally
 
-Install [node.js 16][nodejs] and [yarn classic 1.22][yarn] then:
+Install [node.js 18][nodejs] and [yarn classic 1.22][yarn] then:
 
     $ git clone --branch=dev https://github.com/dizzib/me2christ.git
     $ . me2christ/bootstrap
