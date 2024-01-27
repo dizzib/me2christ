@@ -2,51 +2,17 @@ extends _base.pug
 
 append head
   style: include:stylus _index.styl
-  script: include:livescript _index.ls
 
 block intro
-  .verse Jesus answered
-    .jesus.
-      Most assuredly, I say to you, unless one is born of water and the
-      Spirit, he cannot enter the kingdom of God
-    .ref John 3:5
+  .ref Hebrews 9:27 NKJV
+  .verse And as it is appointed unto men once to die, but after this the judgement.
 
-block main
-  p.
-    Come, step out of the darkness and into the light, for the kingdom of
-    God is here and many are entering in today.
+  .ref Revelation 21:8
+  .verse But the cowardly, unbelieving, abominable, murderers, sexually immoral, sorcerers, idolaters, and all liars shall have their part in the lake which burns with fire and brimstone, which is the second death.
 
-  -:markdown-it
-    [Jesus](#Jesus) came to put **Christ in you** so you can
-    [be healed](ministry.html), become holy and live with God forever,
-    with no more death and suffering!
+  .ref 1 Corinthians 6:9-10
+  .verse Do you not know that the unrighteous will not inherit the kingdom of God? Do not be deceived. Neither fornicators, nor idolaters, nor adulterers, nor homosexuals, nor sodomites, nor thieves, nor covetous, nor drunkards, nor revilers, nor extortioners will inherit the kingdom of God.
 
-  p To begin this amazing journey you need to...
+  .ref Galatians 5:19-21
+  .verse Now the works of the flesh are evident, which are: adultery, fornication, uncleanness, lewdness, idolatry, sorcery, hatred, contentions, jealousies, outbursts of wrath, selfish ambitions, dissensions, heresies, envy, murders, drunkenness, revelries, and the like; of which I tell you beforehand, just as I also told you in time past, that those who practice such things will not inherit the kingdom of God.
 
-  include gospel/_repent.pug
-  include gospel/_baptism.pug
-  include gospel/_receive.pug
-
-  p Please contact me, Andrew, to learn more.
-
-  include _contact.pug
-
-  p Grace, peace and love to you from our Lord Jesus Christ.
-
-block outro
-  .verse And as it is appointed unto men once to die, but after this the judgement
-    .ref Hebrews 9:27
-
-append foot
-  +modal('sin')
-    :markdown-it
-      Sadly we've become separated from God's love
-      by something the bible calls sin.
-
-      Sin is when we think, say or do wrong things, ignore God
-      and break his divine laws.
-
-      Sin hurts ourselves and those around us, and ultimately brings death.
-
-  .light
-    img(src='asset/light.png')
