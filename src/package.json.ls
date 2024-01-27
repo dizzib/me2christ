@@ -1,5 +1,5 @@
 name       : \me2christ
-version    : \1.6.0
+version    : \1.7.0
 description: 'me2christ.com source code'
 private    : true
 homepage   : \https://github.com/dizzib/me2christ
