@@ -13,7 +13,7 @@ scripts:
   build: 'cd .. && node build/task/yarn/build'
   start: 'cd .. && node build/task/repl'
 engines:
-  node: '18'
+  node: '20'
   yarn: '1.22'
 devDependencies:
   chalk                       : \~0.4.0
