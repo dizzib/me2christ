@@ -1,16 +1,15 @@
 <- document.addEventListener \DOMContentLoaded
 
-const DARK    = [0] * 5
-const RAMP_UP = [x / 6 for x to 30]
-const LIGHT   = [5] * 15
-const INTRO   = DARK ++ RAMP_UP ++ LIGHT
-const OUTRO   = INTRO.slice!reverse!
-const SCALES  = INTRO ++ OUTRO
+const LIGHT     = [5] * 65
+const RAMP_DOWN = [x / 6 for x from 30 to 1]
+const DARK      = [0] * 15
+const SCALES    = LIGHT ++ RAMP_DOWN ++ DARK
 
 b = document.body
 h = document.documentElement
 l = b.querySelector \.light
 m = b.querySelector \.main
+o = b.querySelector \.outro
 
 var height # for efficiency, only calculated on height change
 
@@ -22,6 +21,7 @@ function burst
 
 function refresh-height
   height := (h.scrollHeight||b.scrollHeight) - h.clientHeight
+  # houtro := o.clientHeight
   burst!
 
 # event handlers
