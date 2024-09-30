@@ -20,6 +20,9 @@ tasks  =
     oxt : \js
     xsub: 'json.js->json'
     mixn: \_
+  markdown:
+    ixt : \md
+    cbid: \pug # compile-batch id
   pug:
     cmd : "#BIN/pug3 -O \"{version:'#{process.env.npm_package_version}'}\" --out $OUT $IN"
     ixt : \pug
@@ -90,8 +93,13 @@ function start-watching tid
   w.on \all (act, path) ->
     Assert _.endsWith path, ".#{t.ixt}"
     ipath = Path.join(Dir.SRC, path)
-    # log Chalk.yellow(\build), act, tid, ipath
-    if (Path.basename ipath).0 is t?mixn
+    log Chalk.yellow(\build), act, tid, ipath
+    if t?cbid
+      try
+        compile-batch t.cbid
+        me.emit \built
+      catch e then G.err e
+    else if (Path.basename ipath).0 is t?mixn
       try
         compile-batch \pug  # mixin must be included by top level pug
         me.emit \built
