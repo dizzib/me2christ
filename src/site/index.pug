@@ -1,4 +1,5 @@
 extends lib/_base.pug
+include lib/_lightburst.pug
 
 append head
   style: include:stylus _index.styl
@@ -17,7 +18,3 @@ block outro
   include:markdown-it judgement/outro.md
   .judgement-verses
     include:markdown-it judgement/outro-verses.md
-
-append foot
-  .light
-    img(src='asset/light.png')
