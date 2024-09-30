@@ -21,7 +21,6 @@ function burst
 
 function refresh-height
   height := (h.scrollHeight||b.scrollHeight) - h.clientHeight
-  # houtro := o.clientHeight
   burst!
 
 # event handlers
