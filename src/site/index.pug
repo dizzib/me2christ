@@ -4,14 +4,18 @@ append head
   style: include:stylus _index.styl
   script: include:livescript _index.ls
 
+block intro
+  include:markdown-it judgement/intro.md
+  .judgement-verses
+    include:markdown-it judgement/intro-verses.md
+
 block main
   include:markdown-it gospel.md
 
 block outro
-  include:markdown-it judgement.md
-
+  include:markdown-it judgement/outro.md
   .judgement-verses
-    include:markdown-it judgement-verses.md
+    include:markdown-it judgement/outro-verses.md
 
 append foot
   .light
