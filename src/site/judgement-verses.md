@@ -1,4 +1,4 @@
-<!-- markdownlint-disable MD041 -->
+[x]: # (<!-- markdownlint-disable MD041 -->)
 
 And as it is appointed unto men once to die, but after this the judgement *Hebrews 9:27*
 
