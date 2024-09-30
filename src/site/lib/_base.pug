@@ -6,11 +6,11 @@ html
       meta(charset='UTF-8')
       meta(name='version' content=version)
       meta(name='viewport' content='width=device-width, initial-scale=1.0')
-      style: include:stylus lib/_reset.styl
+      style: include:stylus _reset.styl
       style: include:stylus _base.styl
       script: include:livescript _base.ls
       if process.env.M2C_LIVE_RELOAD
-        script: include lib/_livereload.js
+        script: include _livereload.js
   body.noscript
     .root
       .section.judgement.intro
