@@ -28,7 +28,7 @@ devDependencies:
   lodash                      : \~4.17.21
   'node-static'               : \~0.7.11
   'postcss-syntax'            : \~0.36.2  # required for stylelint-stylus
-  'pug-cli'                   : \~1.0.0-alpha6
+  '@anduh/pug-cli'            : \~1.0.0-alpha8
   'pug-lint'                  : \~2.6.0
   shelljs                     : \~0.8.5
   stylelint                   : \~14.12.1

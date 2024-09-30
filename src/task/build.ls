@@ -21,7 +21,7 @@ tasks  =
     xsub: 'json.js->json'
     mixn: \_
   pug:
-    cmd : "#BIN/pug -O \"{version:'#{process.env.npm_package_version}'}\" --out $OUT $IN"
+    cmd : "#BIN/pug3 -O \"{version:'#{process.env.npm_package_version}'}\" --out $OUT $IN"
     ixt : \pug
     oxt : \html
     mixn: \_
