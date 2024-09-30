@@ -1,8 +1,8 @@
 <- document.addEventListener \DOMContentLoaded
 
-const LIGHT     = [5] * 65
-const RAMP_DOWN = [x / 6 for x from 30 to 1]
-const DARK      = [0] * 15
+const LIGHT     = [5] * 650
+const RAMP_DOWN = [x / 60 for x from 300 to 1]
+const DARK      = [0] * 150
 const SCALES    = LIGHT ++ RAMP_DOWN ++ DARK
 
 b = document.body
@@ -14,13 +14,14 @@ o = b.querySelector \.outro
 var height # for efficiency, only calculated on height change
 
 function burst
-  percent = Math.round (h.scrollTop||b.scrollTop) / height * 100
-  scale = SCALES[percent]
+  scrollpos = Math.round (h.scrollTop||b.scrollTop) / height * 1000
+  scale = SCALES[scrollpos]
   l.style.transform = "scale(#scale, #scale)"
   m.style.opacity = scale
 
 function refresh-height
   height := (h.scrollHeight||b.scrollHeight) - h.clientHeight
+  alert height
   burst!
 
 # event handlers
