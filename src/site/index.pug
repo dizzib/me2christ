@@ -2,9 +2,12 @@ extends _base.pug
 
 append head
   style: include:stylus _index.styl
+  script: include:livescript _index.ls
 
 block main
   include:markdown-it gospel.md
+
+block outro
   include:markdown-it judgement.md
   .judgement-verses
     include:markdown-it judgement-verses.md
