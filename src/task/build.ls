@@ -15,27 +15,25 @@ const BIN = "#{Dir.BUILD}/node_modules/.bin"
 
 tasks  =
   livescript:
+    dirs: Dirname.TASK
     cmd : "#BIN/lsc --output $OUT $IN"
     ixt : \ls
     oxt : \js
     xsub: 'json.js->json'
-    mixn: \_
-  markdown:
-    ixt : \md
-    cbid: \pug # compile-batch id
+  includes:
+    dirs: Dirname.SITE
+    ixt : '{ls,md,pug,styl}'
+    cbid: \pug
+    excl: '**/index.pug'
   pug:
+    dirs: Dirname.SITE
     cmd : "#BIN/pug3 -O \"{version:'#{process.env.npm_package_version}'}\" --out $OUT $IN"
-    ixt : \pug
+    pat : \index.pug
     oxt : \html
-    mixn: \_
   static:
+    dirs: "{#{Dirname.SITE},#{Dirname.TASK}}"
     cmd : "cp --target-directory $OUT $IN"
     ixt : '{css,eot,gif,html,jpg,js,mak,otf,pem,png,svg,ttf,txt,woff,woff2,xml}'
-  stylus:
-    cmd : "#BIN/stylus --out $OUT $IN"
-    ixt : \styl
-    oxt : \css
-    mixn: \_
 
 module.exports = me = (new Emitter!) with
   all: ->
@@ -70,7 +68,7 @@ function compile-batch tid
   w = t.watcher.getWatched!
   files = [f for path, names of w for name in names
     when test \-f f = Path.resolve Dir.SRC, path, name]
-  files = _.filter files, -> (Path.basename it).0 isnt t?mixn
+  # files = _.filter files, -> (Path.basename it).0 isnt t?mixn
   info = "#{files.length} #tid files"
   G.say "compiling #info..."
   for f in files then compile t, f
@@ -86,23 +84,18 @@ function start-watching tid
   log "start watching #tid"
   Assert.equal pwd!, Dir.SRC
   pat = (t = tasks[tid]).pat or "*.#{t.ixt}"
-  dirs = "#{Dirname.SITE},#{Dirname.TASK}"
-  w = t.watcher = Choki.watch ["{#dirs}/**/#pat" pat],
+  w = t.watcher = Choki.watch ["#{t.dirs}/**/#pat" pat],
     cwd:Dir.SRC
     ignoreInitial:true
-    ignored:t.ignore
+    ignored:t.excl
   w.on \all (act, path) ->
-    Assert _.endsWith path, ".#{t.ixt}"
+    log path, t.ixt
+    # Assert _.endsWith path, ".#{t.ixt}"
     ipath = Path.join(Dir.SRC, path)
     log Chalk.yellow(\build), act, tid, ipath
     if t?cbid
       try
         compile-batch t.cbid
-        me.emit \built
-      catch e then G.err e
-    else if (Path.basename ipath).0 is t?mixn
-      try
-        compile-batch \pug  # mixin must be included by top level pug
         me.emit \built
       catch e then G.err e
     else if act in [\add \change]
