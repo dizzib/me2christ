@@ -7,8 +7,9 @@ html
       meta(name='version' content=version)
       meta(name='viewport' content='width=device-width, initial-scale=1.0')
       style: include:stylus _reset.styl
+      style: include:stylus _noscript.styl
       style: include:stylus _base.styl
-      script: include:livescript _base.ls
+      script: include:livescript _noscript.ls
       if process.env.M2C_LIVE_RELOAD
         script: include _livereload.js
   body.noscript
