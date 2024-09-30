@@ -6,12 +6,12 @@ html
       meta(charset='UTF-8')
       meta(name='version' content=version)
       meta(name='viewport' content='width=device-width, initial-scale=1.0')
-      style: include:stylus _reset.styl
-      style: include:stylus _noscript.styl
-      style: include:stylus _base.styl
-      script: include:livescript _noscript.ls
+      style: include:stylus reset.styl
+      style: include:stylus noscript.styl
+      style: include:stylus base.styl
+      script: include:livescript noscript.ls
       if process.env.M2C_LIVE_RELOAD
-        script: include _livereload.js
+        script: include livereload.js
   body.noscript
     .root
       .section.judgement.intro
