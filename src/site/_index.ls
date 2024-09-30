@@ -1,7 +1,7 @@
 <- document.addEventListener \DOMContentLoaded
 
 b = document.body
-h = document.documentElement
+d = document.documentElement
 l = b.querySelector \.light
 i = b.querySelector \.intro
 m = b.querySelector \.main
@@ -11,7 +11,7 @@ var MAP_ALL # array of lightburst intensity at each scroll position, 0=dark, 1=l
 
 function burst
   const SCALE_MAX = 5 # max lightburst scale
-  scrollpos = Math.round (h.scrollTop||b.scrollTop)
+  scrollpos = Math.round (d.scrollTop||b.scrollTop)
   scale = MAP_ALL[scrollpos] * SCALE_MAX
   l.style.transform = "scale(#scale, #scale)"
   m.style.opacity = scale
@@ -19,7 +19,7 @@ function burst
 function refresh-height
   intro-height = i.clientHeight
   outro-height = o.clientHeight
-  total-height = (h.scrollHeight||b.scrollHeight) - h.clientHeight
+  total-height = (d.scrollHeight||b.scrollHeight) - d.clientHeight
 
   const LEN_MAP   = total-height # divide full height into this many units
   const LEN_RAMP  = 800 # controls light to/from dark transition speed
