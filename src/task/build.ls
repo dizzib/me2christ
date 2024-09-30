@@ -57,6 +57,7 @@ module.exports = me = (new Emitter!) with
 ## helpers
 
 function compile t, ipath
+  return unless t.cmd
   Assert.equal pwd!, Dir.BUILD
   mkdir \-p odir = Path.dirname opath = get-opath t, ipath
   cmd = t.cmd.replace(\$IN ipath).replace \$OUT odir
