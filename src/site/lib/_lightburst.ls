@@ -14,7 +14,6 @@ function burst
   scrollpos = Math.round (d.scrollTop||b.scrollTop)
   scale = MAP_ALL[scrollpos] * SCALE_MAX
   l.style.transform = "scale(#scale, #scale)"
-  m.style.opacity = scale
 
 function refresh-height
   intro-height = i.clientHeight
