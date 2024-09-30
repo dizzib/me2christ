@@ -1,3 +1,1 @@
-# REPENT, FOR THE KINGDOM OF GOD IS AT HAND!
-
-Friends, God warns us judgement day is coming, therfore let us flee from the wrath to come.
+# REPENT, FOR THE KINGDOM OF HEAVEN IS AT HAND!
