@@ -2,8 +2,8 @@ extends lib/_base.pug
 
 append head
   style: include:stylus _index.styl
-  style: include:stylus _lightburst.styl
-  script: include:livescript _lightburst.ls
+  style: include:stylus lib/_lightburst.styl
+  script: include:livescript lib/_lightburst.ls
 
 block intro
   include:markdown-it judgement/intro.md
