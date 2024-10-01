@@ -22,8 +22,8 @@ function refresh-height
 
   const LEN_MAP   = total-height # divide full height into this many units
   const LEN_RAMP  = 800 # controls light to/from dark transition speed
-  const LEN_INTRO = intro-height - LEN_RAMP / 2
-  const LEN_OUTRO = outro-height - LEN_RAMP / 2
+  const LEN_INTRO = intro-height - LEN_RAMP / 2 - 200
+  const LEN_OUTRO = outro-height - LEN_RAMP / 4
   const LEN_MAIN  = LEN_MAP - LEN_INTRO - LEN_OUTRO - (LEN_RAMP * 2)
   const MAP_INTRO = [0] * LEN_INTRO
   const MAP_UP    = [x / LEN_RAMP for x to LEN_RAMP]
