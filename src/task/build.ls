@@ -20,16 +20,27 @@ tasks  =
     ixt : \ls
     oxt : \js
     xsub: 'json.js->json'
-  includes:
-    dirs: Dirname.SITE
-    ixt : '{ls,md,pug,styl}'
-    cbid: \pug
-    excl: '**/index.pug'
   pug:
     dirs: Dirname.SITE
     cmd : "#BIN/pug3 -O \"{version:'#{process.env.npm_package_version}'}\" --out $OUT $IN"
     pat : \index.pug
     oxt : \html
+  pug-includes:
+    dirs: Dirname.SITE
+    ixt : '{ls,md,pug}'
+    ctid: \pug # compile task id
+    excl: '**/index.pug'
+  sass:
+    dirs: Dirname.SITE
+    cmd : "#BIN/sass --no-source-map $IN $OPATH"
+    pat : \index.sass
+    ixt : \sass
+    oxt : \css
+  sass-includes:
+    dirs: Dirname.SITE
+    ixt : \sass
+    ctid: \sass
+    excl: '**/index.sass'
   static:
     dirs: "{#{Dirname.SITE},#{Dirname.TASK}}"
     cmd : "cp --target-directory $OUT $IN"
@@ -58,7 +69,7 @@ function compile t, ipath
   return unless t.cmd
   Assert.equal pwd!, Dir.BUILD
   mkdir \-p odir = Path.dirname opath = get-opath t, ipath
-  cmd = t.cmd.replace(\$IN ipath).replace \$OUT odir
+  cmd = t.cmd.replace(\$IN ipath).replace(\$OUT odir).replace(\$OPATH opath)
   log Chalk.blue cmd
   Cp.execSync cmd
   opath
@@ -76,7 +87,9 @@ function compile-batch tid
 
 function get-opath t, ipath
   rx = new RegExp("^#{Dir.SRC}/")
+  log t.ixt, t.oxt
   p = ipath.replace(rx, '').replace t.ixt, t.oxt
+  log p
   return p unless (xsub = t.xsub?split '->')?
   p.replace xsub.0, xsub.1
 
@@ -93,9 +106,9 @@ function start-watching tid
     # Assert _.endsWith path, ".#{t.ixt}"
     ipath = Path.join(Dir.SRC, path)
     log Chalk.yellow(\build), act, tid, ipath
-    if t?cbid
+    if t?ctid
       try
-        compile-batch t.cbid
+        compile-batch t.ctid
         me.emit \built
       catch e then G.err e
     else if act in [\add \change]

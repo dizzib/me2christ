@@ -2,8 +2,7 @@ extends lib/base.pug
 include lib/lightburst.pug
 
 append head
-  style: include:stylus index.styl
-  style: include:stylus lib/lightburst.styl
+  link(rel='stylesheet' type='text/css' href='index.css')
   script: include:livescript lib/lightburst.ls
 
 block intro

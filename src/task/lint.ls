@@ -27,12 +27,12 @@ tasks =
     glob: false
     ixt : \pug
     opts: ''
-  stylus:
-    bin : \stylelint
-    cfg : \.stylelintrc.js
-    glob: true
-    ixt : \styl
-    opts: "--config-basedir #MOD --custom-syntax #MOD/stylelint-stylus/custom-syntax"
+  # stylus:
+  #   bin : \stylelint
+  #   cfg : \.stylelintrc.js
+  #   glob: true
+  #   ixt : \styl
+  #   opts: "--config-basedir #MOD --custom-syntax #MOD/stylelint-stylus/custom-syntax"
 
 module.exports = me = (new Emitter!) with
   all: ->

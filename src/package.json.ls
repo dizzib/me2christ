@@ -21,17 +21,15 @@ devDependencies:
   growly                      : \~1.3.0
   'jstransformer-livescript'  : \~1.2.0
   'jstransformer-markdown-it' : \~3.0.0
-  'jstransformer-stylus'      : \~1.5.0
   livereload                  : \~0.9.3
   livescript                  : \~1.6.0
   'ls-lint'                   : \~0.1.2
   lodash                      : \~4.17.21
   'node-static'               : \~0.7.11
-  'postcss-syntax'            : \~0.36.2  # required for stylelint-stylus
+  # 'postcss-syntax'            : \~0.36.2  # required for stylelint-stylus
   '@anduh/pug-cli'            : \~1.0.0-alpha8
   'pug-lint'                  : \~2.6.0
+  sass                        : \~1.79.4
   shelljs                     : \~0.8.5
   stylelint                   : \~14.12.1
   'stylelint-order'           : \~5.0.0
-  'stylelint-stylus'          : \~0.17.0
-  stylus                      : \~0.55.0
