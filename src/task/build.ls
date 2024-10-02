@@ -44,7 +44,7 @@ tasks  =
   static:
     dirs: "{#{Dirname.SITE},#{Dirname.TASK}}"
     cmd : "cp --target-directory $OUT $IN"
-    ixt : '{css,eot,gif,html,jpg,js,mak,otf,pem,png,svg,ttf,txt,woff,woff2,xml}'
+    ixt : '{js,png}'
 
 module.exports = me = (new Emitter!) with
   all: ->
