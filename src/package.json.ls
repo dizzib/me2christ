@@ -26,6 +26,7 @@ devDependencies:
   'ls-lint'                   : \~0.1.2
   lodash                      : \~4.17.21
   'node-static'               : \~0.7.11
+  'postcss-sass'              : \~0.5.0
   '@anduh/pug-cli'            : \~1.0.0-alpha8
   'pug-lint'                  : \~2.6.0
   sass                        : \~1.79.4
