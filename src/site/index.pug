@@ -1,9 +1,11 @@
 extends lib/base.pug
 include lib/lightburst.pug
+include lib/progressbar.pug
 
 append head
   link(rel='stylesheet' type='text/css' href='index.css')
   script: include:livescript lib/lightburst.ls
+  script: include:livescript lib/progressbar.ls
 
 block intro
   include:markdown-it judgement/intro.md
