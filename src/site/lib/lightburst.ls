@@ -34,9 +34,8 @@ function refresh-height
   MAP_ALL := MAP_INTRO ++ MAP_UP ++ MAP_MAIN ++ MAP_DOWN ++ MAP_OUTRO
 
 # event handlers
-window.onresize = refresh-height
-window.onscroll = burst
-# for el in b.getElementsByTagName \details then el.ontoggle = refresh-height
+window.addEventListener \onresize refresh-height
+window.addEventListener \scroll burst
 
 # init
 refresh-height!
