@@ -10,11 +10,5 @@ html
       if process.env.M2C_LIVE_RELOAD
         script: include livereload.js
   body.noscript
-    .root
-      .section.judgement.intro
-        block intro
-      .section.main
-        block main
-      .section.judgement.outro
-        block outro
+    block body
     block foot

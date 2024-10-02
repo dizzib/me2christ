@@ -7,15 +7,14 @@ append head
   script: include:livescript lib/lightburst.ls
   script: include:livescript lib/progressbar.ls
 
-block intro
-  include:markdown-it judgement/intro.md
-  .verses
-    include:markdown-it judgement/intro-verses.md
-
-block main
-  include:markdown-it gospel.md
-
-block outro
-  include:markdown-it judgement/outro.md
-  .verses
-    include:markdown-it judgement/outro-verses.md
+block body
+  .section.judgement.intro
+    include:markdown-it judgement/intro.md
+    .verses
+      include:markdown-it judgement/intro-verses.md
+  .section.main
+    include:markdown-it gospel.md
+  .section.judgement.outro
+    include:markdown-it judgement/outro.md
+    .verses
+      include:markdown-it judgement/outro-verses.md
