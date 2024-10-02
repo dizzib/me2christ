@@ -79,7 +79,6 @@ function compile-batch tid
   w = t.watcher.getWatched!
   files = [f for path, names of w for name in names
     when test \-f f = Path.resolve Dir.SRC, path, name]
-  # files = _.filter files, -> (Path.basename it).0 isnt t?mixn
   info = "#{files.length} #tid files"
   G.say "compiling #info..."
   for f in files then compile t, f
@@ -87,9 +86,7 @@ function compile-batch tid
 
 function get-opath t, ipath
   rx = new RegExp("^#{Dir.SRC}/")
-  log t.ixt, t.oxt
   p = ipath.replace(rx, '').replace t.ixt, t.oxt
-  log p
   return p unless (xsub = t.xsub?split '->')?
   p.replace xsub.0, xsub.1
 
