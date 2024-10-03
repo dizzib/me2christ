@@ -3,8 +3,6 @@ addEventListener("DOMContentLoaded", () => {
   d = document.documentElement
   p = b.querySelector('.progressbar')
 
-  var total_height
-
   function progress() {
     scrollpos = Math.round(d.scrollTop || b.scrollTop)
     percent = scrollpos / total_height * 100
