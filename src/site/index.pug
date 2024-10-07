@@ -8,13 +8,13 @@ append head
   script(src='lib/progressbar.js')
 
 block body
-  .section.judgement.intro
+  section.judgement.intro
     include:markdown-it judgement/intro.md
     .verses
       include:markdown-it judgement/intro-verses.md
-  .section.main
+  section.main
     include:markdown-it gospel.md
-  .section.judgement.outro
+  section.judgement.outro
     include:markdown-it judgement/outro.md
     .verses
       include:markdown-it judgement/outro-verses.md
