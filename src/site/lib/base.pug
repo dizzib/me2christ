@@ -1,3 +1,4 @@
+include noscript.pug
 doctype html
 html
   head
@@ -6,7 +7,6 @@ html
       meta(charset='UTF-8')
       meta(name='version' content=version)
       meta(name='viewport' content='width=device-width, initial-scale=1.0')
-      script: include noscript.js
       if process.env.M2C_LIVE_RELOAD
         script: include livereload.js
   body.noscript
