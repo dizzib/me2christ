@@ -6,13 +6,13 @@ append head
   style: include:scss index.scss
 
 block body
-  section.judgement.intro
+  section.intro.judgement
     include:markdown-it judgement/intro.md
     .verses
       include:markdown-it judgement/intro-verses.md
   section.main
     include:markdown-it gospel.md
-  section.judgement.outro
+  section.outro.judgement
     include:markdown-it judgement/outro.md
     .verses
       include:markdown-it judgement/outro-verses.md
