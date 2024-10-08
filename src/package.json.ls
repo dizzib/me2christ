@@ -20,6 +20,7 @@ devDependencies:
   chokidar                    : \~3.2.2
   growly                      : \~1.3.0
   'jstransformer-markdown-it' : \~3.0.0
+  'jstransformer-scss'        : \~2.0.0
   livereload                  : \~0.9.3
   livescript                  : \~1.6.0
   'ls-lint'                   : \~0.1.2

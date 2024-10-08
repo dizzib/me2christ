@@ -27,7 +27,7 @@ tasks  =
     oxt : \html
   pug-includes:
     dirs: Dirname.SITE
-    ixt : '{ls,md,pug}'
+    ixt : '{ls,md,pug,scss}'
     ctid: \pug # compile task id
     excl: '**/index.pug'
   sass:
