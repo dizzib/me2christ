@@ -10,11 +10,11 @@ addEventListener("DOMContentLoaded", () => {
   }
 
   function refresh_height() {
-    total_height = (d.scrollHeight || b.scrollHeight) - d.clientHeight - 50
+    total_height = (d.scrollHeight || b.scrollHeight) - window.innerHeight - 50
   }
 
   // event handlers
-  window.addEventListener('onresize', refresh_height)
+  window.addEventListener('resize', refresh_height)
   window.addEventListener('scroll', progress)
 
   // init
