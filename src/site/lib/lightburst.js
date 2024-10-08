@@ -1,28 +1,27 @@
 addEventListener("DOMContentLoaded", () => {
-  const b = document.body
-  const d = document.documentElement
-  const l = b.querySelector('.light')
-  const i = b.querySelector('.intro')
-  const o = b.querySelector('.outro')
+  const B = document.body
+  const D = document.documentElement
+  const L = B.querySelector('.light')
+  const I = B.querySelector('.intro')
+  const O = B.querySelector('.outro')
 
-  var MAP_ALL
+  var map_all
 
   function burst() {
-    SCALE_MAX = 5 // max lightburst scale
-    scrollpos = Math.round(d.scrollTop || b.scrollTop)
-    scale = MAP_ALL[scrollpos] * SCALE_MAX
-    l.style.transform = 'scale(' + scale + ',' + scale + ')'
+    const SCALE_MAX = 5 // max lightburst scale
+    var scrollpos = Math.round(D.scrollTop || B.scrollTop)
+    var scale = map_all[scrollpos] * SCALE_MAX
+    L.style.transform = 'scale(' + scale + ',' + scale + ')'
   }
 
   function refresh_height() {
-    const intro_height = i.clientHeight
-    const outro_height = o.clientHeight
-    const total_height = (d.scrollHeight || b.scrollHeight) - window.innerHeight
-
-    const LEN_MAP = total_height // divide full height into this many units
+    const HEIGHT_INTRO = I.clientHeight
+    const HEIGHT_OUTRO = O.clientHeight
+    const HEIGHT_TOTAL = (D.scrollHeight || B.scrollHeight) - window.innerHeight
+    const LEN_MAP = HEIGHT_TOTAL // divide full height into this many units
     const LEN_RAMP = 400 // controls light to/from dark transition speed
-    const LEN_INTRO = intro_height - LEN_RAMP
-    const LEN_OUTRO = outro_height - LEN_RAMP
+    const LEN_INTRO = HEIGHT_INTRO - LEN_RAMP
+    const LEN_OUTRO = HEIGHT_OUTRO - LEN_RAMP
     const LEN_MAIN = LEN_MAP - LEN_INTRO - LEN_OUTRO - (LEN_RAMP * 2)
     const MAP_INTRO = Array(LEN_INTRO).fill(0)
     const MAP_UP = Array(LEN_RAMP).fill('').map((_, i) => i / LEN_RAMP)
@@ -31,7 +30,7 @@ addEventListener("DOMContentLoaded", () => {
     const MAP_OUTRO = Array(LEN_OUTRO).fill(0)
 
     // array of lightburst intensity at each scroll position, 0 = dark, 1 = light
-    MAP_ALL = [...MAP_INTRO, ...MAP_UP, ...MAP_MAIN, ...MAP_DOWN, ...MAP_OUTRO]
+    map_all = [...MAP_INTRO, ...MAP_UP, ...MAP_MAIN, ...MAP_DOWN, ...MAP_OUTRO]
   }
 
   // event handlers
