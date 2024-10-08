@@ -27,13 +27,13 @@ tasks  =
     oxt : \html
   pug-includes:
     dirs: Dirname.SITE
-    ixt : '{ls,md,pug,scss}'
+    ixt : '{js,md,pug,scss}'
     ctid: \pug # compile task id
     excl: '**/index.pug'
   static:
     dirs: "{#{Dirname.SITE},#{Dirname.TASK}}"
     cmd : "cp --target-directory $OUT $IN"
-    ixt : '{js,json,png}'
+    ixt : '{json,png}'
 
 module.exports = me = (new Emitter!) with
   all: ->
