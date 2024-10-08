@@ -29,7 +29,7 @@ tasks =
     opts: ''
   scss:
     bin : \stylelint
-    cfg : \.stylelintrc.js
+    cfg : \.stylelintrc.json
     glob: true
     ixt : \scss
     opts: "--config-basedir #MOD --custom-syntax #MOD/postcss-scss"

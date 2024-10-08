@@ -33,7 +33,7 @@ tasks  =
   static:
     dirs: "{#{Dirname.SITE},#{Dirname.TASK}}"
     cmd : "cp --target-directory $OUT $IN"
-    ixt : '{js,png}'
+    ixt : '{js,json,png}'
 
 module.exports = me = (new Emitter!) with
   all: ->
