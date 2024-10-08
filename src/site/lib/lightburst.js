@@ -5,6 +5,7 @@ addEventListener("DOMContentLoaded", () => {
   const I = B.querySelector('.intro')
   const O = B.querySelector('.outro')
 
+  var height_total
   var map_all
 
   function burst() {
@@ -18,8 +19,12 @@ addEventListener("DOMContentLoaded", () => {
     const HEIGHT_INTRO = I.clientHeight
     const HEIGHT_OUTRO = O.clientHeight
     const HEIGHT_TOTAL = (D.scrollHeight || B.scrollHeight) - window.innerHeight
+
+    if (HEIGHT_TOTAL == height_total) return // dedupe possible multiple reorient and resize events
+    height_total = HEIGHT_TOTAL
+
     const LEN_MAP = HEIGHT_TOTAL // divide full height into this many units
-    const LEN_RAMP = 400 // controls light to/from dark transition speed
+    const LEN_RAMP = 800 // controls light to/from dark transition speed
     const LEN_INTRO = HEIGHT_INTRO - LEN_RAMP
     const LEN_OUTRO = HEIGHT_OUTRO - LEN_RAMP
     const LEN_MAIN = LEN_MAP - LEN_INTRO - LEN_OUTRO - (LEN_RAMP * 2)
@@ -34,7 +39,8 @@ addEventListener("DOMContentLoaded", () => {
   }
 
   // event handlers
-  window.addEventListener('onresize', refresh_height)
+  window.addEventListener('orientationchange', refresh_height)
+  window.addEventListener('resize', refresh_height)
   window.addEventListener('scroll', burst)
 
   // init
