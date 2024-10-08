@@ -25,8 +25,8 @@ addEventListener("DOMContentLoaded", () => {
 
     const LEN_MAP = HEIGHT_TOTAL // divide full height into this many units
     const LEN_RAMP = 800 // controls light to/from dark transition speed
-    const LEN_INTRO = HEIGHT_INTRO - LEN_RAMP
-    const LEN_OUTRO = HEIGHT_OUTRO - LEN_RAMP
+    const LEN_INTRO = Math.max(0, HEIGHT_INTRO - LEN_RAMP)
+    const LEN_OUTRO = Math.max(0, HEIGHT_OUTRO - LEN_RAMP)
     const LEN_MAIN = LEN_MAP - LEN_INTRO - LEN_OUTRO - (LEN_RAMP * 2)
     const MAP_INTRO = Array(LEN_INTRO).fill(0)
     const MAP_UP = Array(LEN_RAMP).fill('').map((_, i) => i / LEN_RAMP)
