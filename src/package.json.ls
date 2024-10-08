@@ -23,13 +23,14 @@ devDependencies:
   'jstransformer-scss'        : \~2.0.0
   livereload                  : \~0.9.3
   livescript                  : \~1.6.0
-  'ls-lint'                   : \~0.1.2
   lodash                      : \~4.17.21
   'node-static'               : \~0.7.11
-  'postcss-sass'              : \~0.5.0
   '@anduh/pug-cli'            : \~1.0.0-alpha8
-  'pug-lint'                  : \~2.6.0
-  sass                        : \~1.79.4
   shelljs                     : \~0.8.5
+# lint
+  'ls-lint'                   : \~0.1.2
+  'postcss-scss'              : \~4.0.9
+  'pug-lint'                  : \~2.6.0
   stylelint                   : \~14.12.1
   'stylelint-order'           : \~5.0.0
+  'stylelint-scss'            : \~5.0.0

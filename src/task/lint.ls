@@ -27,12 +27,12 @@ tasks =
     glob: false
     ixt : \pug
     opts: ''
-  sass:
+  scss:
     bin : \stylelint
     cfg : \.stylelintrc.js
     glob: true
-    ixt : \sass
-    opts: "--config-basedir #MOD --custom-syntax #MOD/postcss-sass"
+    ixt : \scss
+    opts: "--config-basedir #MOD --custom-syntax #MOD/postcss-scss"
 
 module.exports = me = (new Emitter!) with
   all: ->

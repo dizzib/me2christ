@@ -30,17 +30,6 @@ tasks  =
     ixt : '{ls,md,pug,scss}'
     ctid: \pug # compile task id
     excl: '**/index.pug'
-  sass:
-    dirs: Dirname.SITE
-    cmd : "#BIN/sass --no-source-map $IN $OPATH"
-    pat : \index.sass
-    ixt : \sass
-    oxt : \css
-  sass-includes:
-    dirs: Dirname.SITE
-    ixt : \sass
-    ctid: \sass
-    excl: '**/index.sass'
   static:
     dirs: "{#{Dirname.SITE},#{Dirname.TASK}}"
     cmd : "cp --target-directory $OUT $IN"
