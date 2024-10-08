@@ -1,0 +1,43 @@
+body {
+  background: #000;
+  color: #fff;
+}
+
+.main {
+  color: #000;
+
+  blockquote {
+    background: #ddd;
+    border-left: 10px solid #888;
+
+    p {
+      color: red;
+    }
+  }
+}
+
+.intro {
+  h1 {
+    padding-top: 0;
+  }
+}
+
+.outro {
+  margin-bottom: 10vmin;
+}
+
+.judgement {
+  .verses {
+    em {
+      color: #aaa;
+    }
+
+    em:before {
+      content: '\2013\a0' // long dash then non breaking space;
+    }
+
+    p {
+      color: red;
+    }
+  }
+}
