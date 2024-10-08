@@ -1,0 +1,15 @@
+.light {
+  height: 100%;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  transform: scale(0, 0);
+  width: 100%;
+  z-index: -1;
+}
+
+.light {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
