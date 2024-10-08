@@ -19,7 +19,6 @@ devDependencies:
   chalk                       : \~0.4.0
   chokidar                    : \~3.2.2
   growly                      : \~1.3.0
-  'jstransformer-livescript'  : \~1.2.0
   'jstransformer-markdown-it' : \~3.0.0
   livereload                  : \~0.9.3
   livescript                  : \~1.6.0
