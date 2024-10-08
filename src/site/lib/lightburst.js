@@ -16,15 +16,16 @@ addEventListener("DOMContentLoaded", () => {
   }
 
   function refresh_height() {
+    const HEIGHT_WINDOW = window.innerHeight
     const HEIGHT_INTRO = I.clientHeight
     const HEIGHT_OUTRO = O.clientHeight
-    const HEIGHT_TOTAL = (D.scrollHeight || B.scrollHeight) - window.innerHeight
+    const HEIGHT_TOTAL = (D.scrollHeight || B.scrollHeight) - HEIGHT_WINDOW
 
     if (HEIGHT_TOTAL == height_total) return // dedupe possible multiple reorient and resize events
     height_total = HEIGHT_TOTAL
 
     const LEN_MAP = HEIGHT_TOTAL // divide full height into this many units
-    const LEN_RAMP = 800 // controls light to/from dark transition speed
+    const LEN_RAMP = HEIGHT_WINDOW // controls light to/from dark transition speed
     const LEN_INTRO = Math.max(0, HEIGHT_INTRO - LEN_RAMP)
     const LEN_OUTRO = Math.max(0, HEIGHT_OUTRO - LEN_RAMP)
     const LEN_MAIN = LEN_MAP - LEN_INTRO - LEN_OUTRO - (LEN_RAMP * 2)
