@@ -5,12 +5,12 @@ addEventListener("DOMContentLoaded", () => {
   const LI = B.querySelector('.light>img')
 
   var height_total
-  var map_all
-  var map_pos // map value at current scroll positioin
+  var map     // array of lightburst intensity at each scroll position, 0 = dark, 1 = light
+  var map_pos // map value (0 to 1) at current scroll positioin
 
   function burst() {
     var scroll_pos = Math.round(D.scrollTop || B.scrollTop)
-    var map_pos_new = map_all[scroll_pos]
+    var map_pos_new = map[scroll_pos]
     if (map_pos_new == map_pos) return  // only transform if necessary
     map_pos = map_pos_new
 
@@ -41,8 +41,7 @@ addEventListener("DOMContentLoaded", () => {
     const MAP_DOWN = [...MAP_UP].reverse()
     const MAP_OUTRO = Array(LEN_OUTRO).fill(0)
 
-    // array of lightburst intensity at each scroll position, 0 = dark, 1 = light
-    map_all = [...MAP_INTRO, ...MAP_UP, ...MAP_MAIN, ...MAP_DOWN, ...MAP_OUTRO]
+    map = [...MAP_INTRO, ...MAP_UP, ...MAP_MAIN, ...MAP_DOWN, ...MAP_OUTRO]
   }
 
   // event handlers
