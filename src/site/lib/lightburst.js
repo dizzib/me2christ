@@ -1,13 +1,16 @@
 addEventListener("DOMContentLoaded", () => {
   const B = document.body
   const D = document.documentElement
+  const L = B.querySelector('.light')
+  const LI = B.querySelector('.light>img')
 
   var height_total
   var map_all
 
   function burst() {
-    const L = B.querySelector('.light')
-    const SCALE_MAX = 12 // max lightburst scale
+    const LI_FRACTION = LI.naturalHeight / window.innerHeight
+    console.log(LI_FRACTION)
+    const SCALE_MAX = 5 / LI_FRACTION // max lightburst scale
     var scrollpos = Math.round(D.scrollTop || B.scrollTop)
     var scale = map_all[scrollpos] * SCALE_MAX
     L.style.transform = 'scale(' + scale + ',' + scale + ')'
