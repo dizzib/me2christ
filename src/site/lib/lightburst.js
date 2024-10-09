@@ -3,6 +3,7 @@ addEventListener("DOMContentLoaded", () => {
   const D = document.documentElement
   const L = B.querySelector('.light')
   const LI = B.querySelector('.light>img')
+  const W = window
 
   var height_total
   var map     // array of lightburst intensity at each scroll position, 0 = dark, 1 = light
@@ -14,15 +15,16 @@ addEventListener("DOMContentLoaded", () => {
     if (map_pos_new == map_pos) return  // only transform if necessary
     map_pos = map_pos_new
 
-    const LI_FRACTION = LI.naturalHeight / window.innerHeight
+    const LI_FRACTION = Math.max(LI.naturalHeight / W.innerHeight, LI.naturalWidth / W.innerWidth)
     console.log(LI_FRACTION)
     const SCALE_MAX = 5 / LI_FRACTION // max lightburst scale
     var scale = map_pos * SCALE_MAX
-    L.style.transform = 'scale(' + scale + ',' + scale + ')'
+    L.style.filter = `brightness(${0.6 + map_pos * 0.6})`
+    L.style.transform = `scale(${scale}, ${scale})`
   }
 
   function refresh_height() {
-    const HEIGHT_WINDOW = window.innerHeight
+    const HEIGHT_WINDOW = W.innerHeight
     const HEIGHT_INTRO = B.querySelector('.intro').clientHeight
     const HEIGHT_OUTRO = B.querySelector('.outro').clientHeight
     const HEIGHT_TOTAL = (D.scrollHeight || B.scrollHeight) - HEIGHT_WINDOW
