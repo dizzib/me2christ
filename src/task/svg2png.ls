@@ -2,7 +2,7 @@ Fs   = require \fs
 Path = require \path
 R    = require \@resvg/resvg-js
 
-module.exports = function(ipath, opath)
+module.exports = (ipath, opath) ->
   try
     svg = Fs.readFileSync ipath
   catch err then return log err
