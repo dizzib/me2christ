@@ -6,13 +6,18 @@ addEventListener("DOMContentLoaded", () => {
 
   var height_total
   var map_all
+  var map_pos // map value at current scroll positioin
 
   function burst() {
+    var scroll_pos = Math.round(D.scrollTop || B.scrollTop)
+    var map_pos_new = map_all[scroll_pos]
+    if (map_pos_new == map_pos) return  // only transform if necessary
+    map_pos = map_pos_new
+
     const LI_FRACTION = LI.naturalHeight / window.innerHeight
     console.log(LI_FRACTION)
     const SCALE_MAX = 5 / LI_FRACTION // max lightburst scale
-    var scrollpos = Math.round(D.scrollTop || B.scrollTop)
-    var scale = map_all[scrollpos] * SCALE_MAX
+    var scale = map_pos * SCALE_MAX
     L.style.transform = 'scale(' + scale + ',' + scale + ')'
   }
 
