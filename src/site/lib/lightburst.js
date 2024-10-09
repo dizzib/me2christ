@@ -1,15 +1,13 @@
 addEventListener("DOMContentLoaded", () => {
   const B = document.body
   const D = document.documentElement
-  const L = B.querySelector('.light')
-  const I = B.querySelector('.intro')
-  const O = B.querySelector('.outro')
 
   var height_total
   var map_all
 
   function burst() {
-    const SCALE_MAX = 5 // max lightburst scale
+    const L = B.querySelector('.light')
+    const SCALE_MAX = 12 // max lightburst scale
     var scrollpos = Math.round(D.scrollTop || B.scrollTop)
     var scale = map_all[scrollpos] * SCALE_MAX
     L.style.transform = 'scale(' + scale + ',' + scale + ')'
@@ -17,8 +15,8 @@ addEventListener("DOMContentLoaded", () => {
 
   function refresh_height() {
     const HEIGHT_WINDOW = window.innerHeight
-    const HEIGHT_INTRO = I.clientHeight
-    const HEIGHT_OUTRO = O.clientHeight
+    const HEIGHT_INTRO = B.querySelector('.intro').clientHeight
+    const HEIGHT_OUTRO = B.querySelector('.outro').clientHeight
     const HEIGHT_TOTAL = (D.scrollHeight || B.scrollHeight) - HEIGHT_WINDOW
 
     if (HEIGHT_TOTAL == height_total) return // dedupe possible multiple reorient and resize events
