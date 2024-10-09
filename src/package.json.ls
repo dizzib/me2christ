@@ -10,7 +10,7 @@ repository:
   type: \git
   url : \https://github.com/dizzib/me2christ
 scripts:
-  build: 'cd .. && node build/task/yarn/build'
+  build: 'cd .. && node build/task/yarn/build.js'
   start: 'cd .. && node --watch build/task/repl.js'
 engines:
   node: '20'
