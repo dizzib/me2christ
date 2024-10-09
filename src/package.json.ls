@@ -26,6 +26,7 @@ devDependencies:
   lodash                      : \~4.17.21
   'node-static'               : \~0.7.11
   '@anduh/pug-cli'            : \~1.0.0-alpha8
+  '@resvg/resvg-js'           : \~2.6.2
   shelljs                     : \~0.8.5
 # lint
   'ls-lint'                   : \~0.1.2

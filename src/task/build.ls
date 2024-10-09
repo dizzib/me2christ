@@ -10,6 +10,7 @@ Shell   = require \shelljs/global
 Dirname = require \./constants .dirname
 Dir     = require \./constants .dir
 G       = require \./growl
+Svg2Png = require \./svg2png
 
 const BIN = "#{Dir.BUILD}/node_modules/.bin"
 
@@ -33,7 +34,12 @@ tasks  =
   static:
     dirs: "{#{Dirname.SITE},#{Dirname.TASK}}"
     cmd : "cp --target-directory $OUT $IN"
-    ixt : '{json,png}'
+    ixt : '{json}'
+  svg:
+    dirs: Dirname.SITE
+    fn  : Svg2Png
+    ixt : \svg
+    oxt : \png
 
 module.exports = me = (new Emitter!) with
   all: ->
@@ -55,9 +61,10 @@ module.exports = me = (new Emitter!) with
 ## helpers
 
 function compile t, ipath
-  return unless t.cmd
+  return unless t.cmd or t.fn
   Assert.equal pwd!, Dir.BUILD
   mkdir \-p odir = Path.dirname opath = get-opath t, ipath
+  return t.fn(ipath, opath) if t.fn
   cmd = t.cmd.replace(\$IN ipath).replace(\$OUT odir).replace(\$OPATH opath)
   log Chalk.blue cmd
   Cp.execSync cmd
