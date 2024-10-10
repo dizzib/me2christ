@@ -39,7 +39,6 @@ tasks  =
     cmd : "#BIN/lsc --output $OUT $IN"
     ixt : \ls
     oxt : \js
-    xsub: 'json.js->json'
   task_static:
     dirs: Dirname.TASK
     cmd : "cp --target-directory $OUT $IN"
@@ -89,9 +88,7 @@ function compile-batch tid
 
 function get-opath t, ipath
   rx = new RegExp("^#{Dir.SRC}/")
-  p = ipath.replace(rx, '').replace t.ixt, t.oxt
-  return p unless (xsub = t.xsub?split '->')?
-  p.replace xsub.0, xsub.1
+  ipath.replace(rx, '').replace t.ixt, t.oxt
 
 function start-watching tid
   Assert.equal pwd!, Dir.SRC
