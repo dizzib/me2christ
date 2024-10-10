@@ -71,9 +71,11 @@ function compile t, ipath
   log Chalk.blue cmd
   Cp.execSync cmd
   if t.run # optionally run module
-    path = '../' + opath
-    delete require.cache[require.resolve(path)]; # invalidate cache
-    (require path)(ipath, opath)
+    try
+      path = '../' + opath
+      delete require.cache[require.resolve(path)]; # invalidate cache
+      (require path)(ipath, opath)
+    catch e then G.err e
   opath
 
 function compile-batch tid
