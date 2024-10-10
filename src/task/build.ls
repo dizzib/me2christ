@@ -18,7 +18,7 @@ tasks  =
     cmd : "#BIN/lsc --output $OUT $IN"
     ixt : \json.ls
     oxt : \json
-  site_ls: #  livescript for backend (javascript for frontend)
+  site_ls: #  livescript for SSG (javascript for frontend)
     dirs: Dirname.SITE
     cmd : "#BIN/lsc --output $OUT $IN"
     ixt : \ls
@@ -73,7 +73,7 @@ function compile t, ipath
   if t.run # optionally run module
     path = '../' + opath
     delete require.cache[require.resolve(path)]; # invalidate cache
-    (require path)!
+    (require path)(ipath, opath)
   opath
 
 function compile-batch tid
