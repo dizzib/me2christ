@@ -15,31 +15,32 @@ Svg2Png = require \./svg2png
 const BIN = "#{Dir.BUILD}/node_modules/.bin"
 
 tasks  =
-  livescript:
+  site_livescript: #  livescript for backend (javascript for frontend)
+    dirs: Dirname.SITE
+    cmd : "#BIN/lsc --output $OUT $IN"
+    ixt : \ls
+    oxt : \js
+    run : true # run module after compiling
+  site_pug:
+    dirs: Dirname.SITE
+    cmd : "#BIN/pug3 -O \"{version:'#{process.env.npm_package_version}'}\" --out $OUT $IN"
+    pat : \index.pug
+    oxt : \html
+  site_pug_includes:
+    dirs: Dirname.SITE
+    ixt : '{js,md,pug,scss}'
+    ctid: \pug # compile task id
+    excl: '**/index.pug'
+  task_livescript:
     dirs: Dirname.TASK
     cmd : "#BIN/lsc --output $OUT $IN"
     ixt : \ls
     oxt : \js
     xsub: 'json.js->json'
-  pug:
-    dirs: Dirname.SITE
-    cmd : "#BIN/pug3 -O \"{version:'#{process.env.npm_package_version}'}\" --out $OUT $IN"
-    pat : \index.pug
-    oxt : \html
-  pug-includes:
-    dirs: Dirname.SITE
-    ixt : '{js,md,pug,scss}'
-    ctid: \pug # compile task id
-    excl: '**/index.pug'
-  static:
-    dirs: "{#{Dirname.SITE},#{Dirname.TASK}}"
+  task_static:
+    dirs: Dirname.TASK
     cmd : "cp --target-directory $OUT $IN"
     ixt : '{json}'
-  svg:
-    dirs: Dirname.SITE
-    fn  : Svg2Png
-    ixt : \svg
-    oxt : \png
 
 module.exports = me = (new Emitter!) with
   all: ->
@@ -61,13 +62,15 @@ module.exports = me = (new Emitter!) with
 ## helpers
 
 function compile t, ipath
-  return unless t.cmd or t.fn
+  return unless t.cmd
   Assert.equal pwd!, Dir.BUILD
   mkdir \-p odir = Path.dirname opath = get-opath t, ipath
-  return t.fn(ipath, opath) if t.fn
   cmd = t.cmd.replace(\$IN ipath).replace(\$OUT odir).replace(\$OPATH opath)
   log Chalk.blue cmd
   Cp.execSync cmd
+  if t.run # optionally run module
+    mod = require '../' + opath
+    mod!
   opath
 
 function compile-batch tid
