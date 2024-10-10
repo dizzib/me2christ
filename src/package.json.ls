@@ -26,10 +26,12 @@ devDependencies:
   lodash                      : \~4.17.21
   'node-static'               : \~0.7.11
   '@anduh/pug-cli'            : \~1.0.0-alpha8
-  '@resvg/resvg-js'           : \~2.6.2 # svg to png
   shelljs                     : \~0.8.5
-  '@svgdotjs/svg.js'          : \~3.2.4 # js to svg
-# lint
+  # svg
+  '@resvg/resvg-js'           : \~2.6.2
+  '@svgdotjs/svg.js'          : \~3.2.4
+  svgdom                      : \~0.1.19
+  # lint
   'ls-lint'                   : \~0.1.2
   'postcss-scss'              : \~4.0.9
   'pug-lint'                  : \~2.6.0
