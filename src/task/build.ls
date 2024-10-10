@@ -10,12 +10,15 @@ Shell   = require \shelljs/global
 Dirname = require \./constants .dirname
 Dir     = require \./constants .dir
 G       = require \./growl
-Svg2Png = require \./svg2png
 
 const BIN = "#{Dir.BUILD}/node_modules/.bin"
 
 tasks  =
-  site_livescript: #  livescript for backend (javascript for frontend)
+  package_json_ls:
+    cmd : "#BIN/lsc --output $OUT $IN"
+    ixt : \json.ls
+    oxt : \json
+  site_ls: #  livescript for backend (javascript for frontend)
     dirs: Dirname.SITE
     cmd : "#BIN/lsc --output $OUT $IN"
     ixt : \ls
@@ -31,7 +34,7 @@ tasks  =
     ixt : '{js,md,pug,scss}'
     ctid: \pug # compile task id
     excl: '**/index.pug'
-  task_livescript:
+  task_ls:
     dirs: Dirname.TASK
     cmd : "#BIN/lsc --output $OUT $IN"
     ixt : \ls
@@ -40,7 +43,7 @@ tasks  =
   task_static:
     dirs: Dirname.TASK
     cmd : "cp --target-directory $OUT $IN"
-    ixt : '{json}'
+    ixt : '{lson,json}'
 
 module.exports = me = (new Emitter!) with
   all: ->
@@ -69,8 +72,9 @@ function compile t, ipath
   log Chalk.blue cmd
   Cp.execSync cmd
   if t.run # optionally run module
-    mod = require '../' + opath
-    mod!
+    path = '../' + opath
+    delete require.cache[require.resolve(path)]; # invalidate cache
+    (require path)!
   opath
 
 function compile-batch tid
@@ -90,10 +94,12 @@ function get-opath t, ipath
   p.replace xsub.0, xsub.1
 
 function start-watching tid
-  log "start watching #tid"
   Assert.equal pwd!, Dir.SRC
-  pat = (t = tasks[tid]).pat or "*.#{t.ixt}"
-  w = t.watcher = Choki.watch ["#{t.dirs}/**/#pat" pat],
+  t = tasks[tid]; pat = ''
+  pat += "#{t.dirs}/**/" if t.dirs
+  pat += t.pat or "*.#{t.ixt}"
+  log "start watching #tid: #pat"
+  w = t.watcher = Choki.watch pat,
     cwd:Dir.SRC
     ignoreInitial:true
     ignored:t.excl
