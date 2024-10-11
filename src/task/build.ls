@@ -26,7 +26,7 @@ tasks  =
   site_pug_includes:
     dirs: Dirname.SITE
     ixt : '{js,md,pug,scss}'
-    ctid: \pug # compile task id
+    ctid: \site_pug # compile task id
     excl: '**/index.pug'
   task_ls:
     dirs: Dirname.TASK
@@ -63,7 +63,8 @@ function compile t, ipath
   mkdir \-p odir = Path.dirname opath = get-opath t, ipath
   cmd = t.cmd.replace(\$IN ipath).replace(\$OUT odir).replace(\$OPATH opath)
   log Chalk.blue cmd
-  Cp.execSync cmd
+  stdout = Cp.execSync cmd
+  log stdout.toString!
   if t.run # optionally run module
     try
       path = '../' + opath
@@ -108,6 +109,6 @@ function start-watching tid
       catch e then G.err e
     else if act in [\add \change]
       try opath = compile t, ipath
-      catch e then return G.err ipath
+      catch e then return G.err e
       G.ok opath
       me.emit \built
