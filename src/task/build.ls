@@ -18,12 +18,6 @@ tasks  =
     cmd : "#BIN/lsc --output $OUT $IN"
     ixt : \json.ls
     oxt : \json
-  site_ls: #  livescript for SSG (javascript for frontend)
-    dirs: Dirname.SITE
-    cmd : "#BIN/lsc --output $OUT $IN"
-    ixt : \ls
-    oxt : \js
-    run : true # run module after compiling
   site_pug:
     dirs: Dirname.SITE
     cmd : "#BIN/pug3 -O \"{version:'#{process.env.npm_package_version}'}\" --out $OUT $IN"
