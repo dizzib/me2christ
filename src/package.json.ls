@@ -16,6 +16,11 @@ engines:
   node: '20'
   yarn: '1.22'
 devDependencies:
+  # svg
+  '@resvg/resvg-js'           : \~2.6.2
+  '@svgdotjs/svg.js'          : \~3.2.4
+  svgdom                      : \~0.1.19
+  # task
   chalk                       : \~0.4.0
   chokidar                    : \~3.2.2
   growly                      : \~1.3.0
@@ -27,11 +32,7 @@ devDependencies:
   'node-static'               : \~0.7.11
   '@anduh/pug-cli'            : \~1.0.0-alpha8
   shelljs                     : \~0.8.5
-  # svg
-  '@resvg/resvg-js'           : \~2.6.2
-  '@svgdotjs/svg.js'          : \~3.2.4
-  svgdom                      : \~0.1.19
-  # lint
+  # task lint
   'ls-lint'                   : \~0.1.2
   'postcss-scss'              : \~4.0.9
   'pug-lint'                  : \~2.6.0
