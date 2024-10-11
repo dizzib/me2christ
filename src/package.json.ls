@@ -18,8 +18,6 @@ engines:
 devDependencies:
   # svg
   '@resvg/resvg-js'           : \~2.6.2
-  '@svgdotjs/svg.js'          : \~3.2.4
-  svgdom                      : \~0.1.19
   # task
   chalk                       : \~0.4.0
   chokidar                    : \~3.2.2
