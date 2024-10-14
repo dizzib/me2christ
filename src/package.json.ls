@@ -16,8 +16,6 @@ engines:
   node: '20'
   yarn: '1.22'
 devDependencies:
-  # svg
-  '@resvg/resvg-js'           : \~2.6.2
   # task
   chalk                       : \~0.4.0
   chokidar                    : \~3.2.2
