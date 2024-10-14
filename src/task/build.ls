@@ -14,6 +14,10 @@ G       = require \./growl
 const BIN = "#{Dir.BUILD}/node_modules/.bin"
 
 tasks  =
+  ls:
+    cmd : "#BIN/lsc --output $OUT $IN"
+    ixt : \ls
+    oxt : \js
   package_json_ls:
     cmd : "#BIN/lsc --output $OUT $IN"
     ixt : \json.ls
@@ -28,11 +32,11 @@ tasks  =
     ixt : '{js,md,pug,scss}'
     ctid: \site_pug # compile task id
     excl: '**/index.pug'
-  task_ls:
-    dirs: Dirname.TASK
-    cmd : "#BIN/lsc --output $OUT $IN"
-    ixt : \ls
-    oxt : \js
+  site_svg:
+    dirs: Dirname.SITE
+    ixt : \svg
+    oxt : \png
+    run : \asset/svg2png
   task_static:
     dirs: Dirname.TASK
     cmd : "cp --target-directory $OUT $IN"
@@ -58,19 +62,19 @@ module.exports = me = (new Emitter!) with
 ## helpers
 
 function compile t, ipath
-  return unless t.cmd
+  return unless t.cmd or t.run
   Assert.equal pwd!, Dir.BUILD
   mkdir \-p odir = Path.dirname opath = get-opath t, ipath
-  cmd = t.cmd.replace(\$IN ipath).replace(\$OUT odir).replace(\$OPATH opath)
-  log Chalk.blue cmd
-  stdout = Cp.execSync cmd
-  log stdout.toString!
-  if t.run # optionally run module
-    try
-      path = '../' + opath
-      delete require.cache[require.resolve(path)]; # invalidate cache
-      (require path)(ipath, opath)
-    catch e then G.err e
+  if t.cmd
+    cmd = t.cmd.replace(\$IN ipath).replace(\$OUT odir).replace(\$OPATH opath)
+    log Chalk.blue cmd
+    stdout = Cp.execSync cmd
+    log stdout.toString!
+  if t.run
+    mod = "../#{t.dirs}/#{t.run}"
+    log Chalk.blue 'run module:' mod
+    delete require.cache[require.resolve(mod)]; # invalidate cache
+    (require mod)(ipath, opath)
   opath
 
 function compile-batch tid
@@ -90,7 +94,8 @@ function get-opath t, ipath
 function start-watching tid
   Assert.equal pwd!, Dir.SRC
   t = tasks[tid]; pat = ''
-  pat += "#{t.dirs}/**/" if t.dirs
+  pat += "#{t.dirs}/" if t.dirs
+  pat += "**/"
   pat += t.pat or "*.#{t.ixt}"
   log "start watching #tid: #pat"
   w = t.watcher = Choki.watch pat,
