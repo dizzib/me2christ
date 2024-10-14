@@ -14,14 +14,14 @@ G       = require \./growl
 const BIN = "#{Dir.BUILD}/node_modules/.bin"
 
 tasks  =
+  json_ls:
+    cmd: "#BIN/lsc --output $OUT $IN"
+    ixt: \json.ls
+    oxt: \json
   ls:
     cmd: "#BIN/lsc --output $OUT $IN"
     ixt: \ls
     oxt: \js
-  package_json_ls:
-    cmd: "#BIN/lsc --output $OUT $IN"
-    ixt: \json.ls
-    oxt: \json
   site_pug:
     dir: Dirname.SITE
     cmd: "#BIN/pug3 -O \"{version:'#{process.env.npm_package_version}'}\" --out $OUT $IN"
@@ -32,15 +32,9 @@ tasks  =
     ign: '**/index.pug'
     ixt: '{js,md,pug,scss}'
     tid: \site_pug # task id to run
-  site_svg:
-    dir: Dirname.SITE
-    ixt: \svg
-    oxt: \png
-    run: \asset/svg2png
-  task_static:
-    dir: Dirname.TASK
+  static:
     cmd: "cp --target-directory $OUT $IN"
-    ixt: '{lson,json}'
+    ixt: '{json,lson,png}'
 
 module.exports = me = (new Emitter!) with
   all: ->

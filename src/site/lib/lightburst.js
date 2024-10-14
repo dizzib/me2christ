@@ -15,11 +15,12 @@ addEventListener("DOMContentLoaded", () => {
     if (map_pos_new == map_pos) return  // only transform if necessary
     map_pos = map_pos_new
 
-    const LI_FRACTION = Math.max(LI.naturalHeight / W.innerHeight, LI.naturalWidth / W.innerWidth)
-    console.log(LI_FRACTION)
-    const SCALE_MAX = 5 / LI_FRACTION // max lightburst scale
+    const LI_FRACTION = Math.min(LI.naturalHeight / W.innerHeight, LI.naturalWidth / W.innerWidth)
+    const SCALE_MAX = 4 / LI_FRACTION // max lightburst scale
+
+    var lightness = Math.max(0, map_pos - 0.5) * 2 * 100 // start increasing brightness half way into ramp
     var scale = map_pos * SCALE_MAX
-    L.style.filter = `brightness(${0.6 + map_pos * 0.6})`
+    L.style.background = `hsl(0, 0%, ${lightness}%)`
     L.style.transform = `scale(${scale}, ${scale})`
   }
 
