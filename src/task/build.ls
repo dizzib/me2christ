@@ -15,32 +15,32 @@ const BIN = "#{Dir.BUILD}/node_modules/.bin"
 
 tasks  =
   ls:
-    cmd : "#BIN/lsc --output $OUT $IN"
-    ixt : \ls
-    oxt : \js
+    cmd: "#BIN/lsc --output $OUT $IN"
+    ixt: \ls
+    oxt: \js
   package_json_ls:
-    cmd : "#BIN/lsc --output $OUT $IN"
-    ixt : \json.ls
-    oxt : \json
+    cmd: "#BIN/lsc --output $OUT $IN"
+    ixt: \json.ls
+    oxt: \json
   site_pug:
-    dirs: Dirname.SITE
-    cmd : "#BIN/pug3 -O \"{version:'#{process.env.npm_package_version}'}\" --out $OUT $IN"
-    pat : \index.pug
-    oxt : \html
+    dir: Dirname.SITE
+    cmd: "#BIN/pug3 -O \"{version:'#{process.env.npm_package_version}'}\" --out $OUT $IN"
+    pat: \index.pug
+    oxt: \html
   site_pug_includes:
-    dirs: Dirname.SITE
-    ixt : '{js,md,pug,scss}'
-    ctid: \site_pug # compile task id
-    excl: '**/index.pug'
+    dir: Dirname.SITE
+    ign: '**/index.pug'
+    ixt: '{js,md,pug,scss}'
+    tid: \site_pug # task id to run
   site_svg:
-    dirs: Dirname.SITE
-    ixt : \svg
-    oxt : \png
-    run : \asset/svg2png
+    dir: Dirname.SITE
+    ixt: \svg
+    oxt: \png
+    run: \asset/svg2png
   task_static:
-    dirs: Dirname.TASK
-    cmd : "cp --target-directory $OUT $IN"
-    ixt : '{lson,json}'
+    dir: Dirname.TASK
+    cmd: "cp --target-directory $OUT $IN"
+    ixt: '{lson,json}'
 
 module.exports = me = (new Emitter!) with
   all: ->
@@ -71,7 +71,7 @@ function compile t, ipath
     stdout = Cp.execSync cmd
     log stdout.toString!
   if t.run
-    mod = "../#{t.dirs}/#{t.run}"
+    mod = "../#{t.dir}/#{t.run}"
     log Chalk.blue 'run module:' mod
     delete require.cache[require.resolve(mod)]; # invalidate cache
     (require mod)(ipath, opath)
@@ -94,22 +94,22 @@ function get-opath t, ipath
 function start-watching tid
   Assert.equal pwd!, Dir.SRC
   t = tasks[tid]; pat = ''
-  pat += "#{t.dirs}/" if t.dirs
+  pat += "#{t.dir}/" if t.dir
   pat += "**/"
   pat += t.pat or "*.#{t.ixt}"
   log "start watching #tid: #pat"
   w = t.watcher = Choki.watch pat,
     cwd:Dir.SRC
     ignoreInitial:true
-    ignored:t.excl
+    ignored:t.ign
   w.on \all (act, path) ->
     log path, t.ixt
     # Assert _.endsWith path, ".#{t.ixt}"
     ipath = Path.join(Dir.SRC, path)
     log Chalk.yellow(\build), act, tid, ipath
-    if t?ctid
+    if t?tid
       try
-        compile-batch t.ctid
+        compile-batch t.tid
         me.emit \built
       catch e then G.err e
     else if act in [\add \change]
