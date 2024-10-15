@@ -63,12 +63,12 @@ function compile t, ipath
     cmd = t.cmd.replace(\$IN ipath).replace(\$OUT odir).replace(\$OPATH opath)
     log Chalk.blue cmd
     Cp.execSync cmd, {stdio: \pipe} # hide stdout/err to avoid duplicating error messages
+    G.ok opath
   if t.run
     mod = "../#{t.dir}/#{t.run}"
     log Chalk.blue 'run module:' mod
     delete require.cache[require.resolve(mod)]; # invalidate cache
     (require mod)(ipath, opath)
-  opath
 
 function compile-batch tid
   t = tasks[tid]
@@ -96,17 +96,11 @@ function start-watching tid
     ignoreInitial:true
     ignored:t.ign
   w.on \all (act, path) ->
-    log path, t.ixt
-    # Assert _.endsWith path, ".#{t.ixt}"
     ipath = Path.join(Dir.SRC, path)
     log Chalk.yellow(\build), act, tid, ipath
-    if t?tid
-      try
-        compile-batch t.tid
-        me.emit \built
-      catch e then G.err e
-    else if act in [\add \change]
-      try opath = compile t, ipath
-      catch e then return G.err e
-      G.ok opath
-      me.emit \built
+    try
+      if t?tid then compile-batch t.tid
+      else if act in [\add \change] then opath = compile t, ipath
+      else return
+    catch e then return G.err e
+    me.emit \built
