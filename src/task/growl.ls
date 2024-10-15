@@ -3,7 +3,7 @@ G     = require \growly
 Util  = require \util
 Const = require \./constants
 
-const CHALKS = error:Chalk.red, info:Chalk.stripColor, success:Chalk.green
+const CHALKS = error:Chalk.yellow, info:Chalk.stripColor, success:Chalk.green
 enabled = (growl-at = process.env.growl-at)?
 
 function send label, item, opts = {}
