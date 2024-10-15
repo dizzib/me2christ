@@ -62,8 +62,7 @@ function compile t, ipath
   if t.cmd
     cmd = t.cmd.replace(\$IN ipath).replace(\$OUT odir).replace(\$OPATH opath)
     log Chalk.blue cmd
-    stdout = Cp.execSync cmd
-    log stdout.toString!
+    Cp.execSync cmd, {stdio: \pipe} # hide stdout/err to avoid duplicating error messages
   if t.run
     mod = "../#{t.dir}/#{t.run}"
     log Chalk.blue 'run module:' mod
