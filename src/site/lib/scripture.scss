@@ -1,11 +1,11 @@
 .judgement {
-  .ref {
+  cite {
     color: #aaa;
     float: right;
     margin-bottom: 1em;
   }
 
-  .ref:before {
+  cite:before {
     content: '\a0\2013\a0' // long dash then non breaking space;
   }
 
