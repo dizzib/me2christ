@@ -1,29 +1,41 @@
+blockquote {
+  margin-block-end: 0;
+  margin-block-start: 0;
+  margin-inline-end: 0;
+  margin-inline-start: 0;
+}
+
+cite {
+  float: right;
+  margin-bottom: 1em;
+}
+
+cite:before {
+  content: '\a0\2013\a0' // long dash then non breaking space;
+}
+
+.verse {
+  clear: right;
+}
+
 .main {
   blockquote {
-    background: #ddd;
-    border-left: 4px solid #888;
-    margin-inline-start: 0px;
+    border-left: 4px solid #f00;
     padding-left: 0.5em;
 
-    p {
+    q {
       color: red;
     }
   }
 }
 
+
 .judgement {
   cite {
     color: #aaa;
-    float: right;
-    margin-bottom: 1em;
-  }
-
-  cite:before {
-    content: '\a0\2013\a0' // long dash then non breaking space;
   }
 
   .verse {
-    clear: right;
     color: #f33;
 
     b {
@@ -31,10 +43,10 @@
     }
 
     strong {
+      -webkit-background-clip: text;
+      background-clip: text;
       background-image: linear-gradient(to top, red, yellow);
       color: transparent;
-      background-clip: text;
-      -webkit-background-clip: text;
       text-shadow: 1px 1px 4px white;
     }
   }
