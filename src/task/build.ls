@@ -13,7 +13,7 @@ G       = require \./growl
 
 const BIN = "#{Dir.BUILD}/node_modules/.bin"
 
-tasks  =
+tasks =
   json_ls:
     cmd: "#BIN/lsc --output $OUT $IN"
     ixt: \json.ls
@@ -46,8 +46,7 @@ module.exports = me = (new Emitter!) with
     try
       pushd Dir.SRC
       for tid of tasks then start-watching tid
-    finally
-      popd!
+    finally popd!
 
   stop: ->
     log Chalk.red 'stop build'
@@ -91,10 +90,7 @@ function start-watching tid
   pat += "**/"
   pat += t.pat or "*.#{t.ixt}"
   log "start watching #tid: #pat"
-  w = t.watcher = Choki.watch pat,
-    cwd:Dir.SRC
-    ignoreInitial:true
-    ignored:t.ign
+  w = t.watcher = Choki.watch pat, {cwd:Dir.SRC, ignoreInitial:true, ignored:t.ign}
   w.on \all (act, path) ->
     ipath = Path.join(Dir.SRC, path)
     log Chalk.yellow(\build), act, tid, ipath
