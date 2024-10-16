@@ -1,15 +1,16 @@
 .judgement {
   .ref {
     color: #aaa;
+    float: right;
+    margin-bottom: 1em;
   }
 
   .ref:before {
-    content: '\2013\a0' // long dash then non breaking space;
+    content: '\a0\2013\a0' // long dash then non breaking space;
   }
 
   .verse {
-    p {
-      color: red;
-    }
+    clear: right;
+    color: red;
   }
 }
