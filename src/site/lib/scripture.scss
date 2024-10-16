@@ -17,5 +17,12 @@
     b {
       color: orange;
     }
+
+    strong {
+      background-image: linear-gradient(to top, red, yellow);
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
   }
 }
