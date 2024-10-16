@@ -11,7 +11,7 @@ addEventListener("DOMContentLoaded", () => {
 
   function burst() {
     var scroll_pos = Math.round(D.scrollTop || B.scrollTop)
-    var map_pos_new = map[scroll_pos]
+    var map_pos_new = map[scroll_pos] || 0
     if (map_pos_new == map_pos) return  // only transform if necessary
     map_pos = map_pos_new
 
@@ -20,6 +20,7 @@ addEventListener("DOMContentLoaded", () => {
 
     var lightness = Math.max(0, map_pos - 0.5) * 2 * 100 // start increasing brightness half way into ramp
     var scale = map_pos * SCALE_MAX
+    B.style.background = (map_pos < 0.5) ? '#000' : '#fff' // fix ipad safari invisible scrollbar
     L.style.background = `hsl(0, 0%, ${lightness}%)`
     L.style.transform = `scale(${scale}, ${scale})`
   }
