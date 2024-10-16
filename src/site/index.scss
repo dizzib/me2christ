@@ -25,19 +25,3 @@ body {
 .outro {
   margin-bottom: 10vmin;
 }
-
-.judgement {
-  .verses {
-    em {
-      color: #aaa;
-    }
-
-    em:before {
-      content: '\2013\a0' // long dash then non breaking space;
-    }
-
-    p {
-      color: red;
-    }
-  }
-}
