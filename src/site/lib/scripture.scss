@@ -1,10 +1,10 @@
 .judgement {
   .ref {
     color: #aaa;
+  }
 
-    :before {
-      content: '\2013\a0' // long dash then non breaking space;
-    }
+  .ref:before {
+    content: '\2013\a0' // long dash then non breaking space;
   }
 
   .verse {
