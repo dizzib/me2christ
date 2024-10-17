@@ -15,10 +15,13 @@ h1 {
 
 h1,
 h2 {
-  clear: both;
   text-align: center;
 }
 
-p {
+// clear verse ref floats
+h1,
+h2,
+p,
+footer {
   clear: both;
 }

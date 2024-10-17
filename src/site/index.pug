@@ -5,10 +5,13 @@ include lib/scripture.pug
 append head
   style: include:scss index.scss
 
-block body
-  section.intro.judgement
-    include judgement/intro.pug
-  section.main
-    include gospel.pug
-  section.outro.judgement
-    include judgement/outro.pug
+append intro
+  .judgement
+    include judgment-intro.pug
+
+append main
+  include gospel.pug
+
+append outro
+  .judgement
+    include judgment-outro.pug
