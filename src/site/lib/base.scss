@@ -2,26 +2,26 @@ body {
   font-family: Arial, Verdana, Geneva, Tahoma, sans-serif;
   font-size: 1.5em;
   margin: 0;
-  padding: 0 0.5em;
-}
 
-a {
-  color: cyan;
-}
+  section {
+    padding: 0 0.5em;
+  }
 
-h1 {
-  font-size: 2em; // override section>h1 default of 1.5em
-}
+  h1 {
+    font-size: 2em; // override section>h1 default of 1.5em
+  }
 
-h1,
-h2 {
-  text-align: center;
-}
+  h1,
+  h2 {
+    text-align: center;
+  }
 
-// clear verse ref floats
-h1,
-h2,
-p,
-footer {
-  clear: both;
+  // clear verse ref floats
+  h1,
+  h2,
+  header,
+  p,
+  footer {
+    clear: both;
+  }
 }

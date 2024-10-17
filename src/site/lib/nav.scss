@@ -1,0 +1,20 @@
+header.navbar {
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  font-size: 0.9em;
+  position: sticky;
+  text-align: center; // center nav
+  top: 0;
+
+  nav {
+    a {
+      color: black;
+      margin-right: 0.5em;
+    }
+
+    a.active {
+      background: #f00;
+      color: white;
+    }
+  }
+}
