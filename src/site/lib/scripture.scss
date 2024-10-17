@@ -1,4 +1,5 @@
 blockquote {
+  clear: both;
   margin-block-end: 0;
   margin-block-start: 0;
   margin-inline-end: 0;
@@ -14,13 +15,8 @@ cite:before {
   content: '\a0\2013\a0' // long dash then non breaking space;
 }
 
-
 q.jesus {
   color: red;
-}
-
-.verse {
-  clear: right;
 }
 
 .main {
@@ -34,13 +30,8 @@ q.jesus {
   }
 }
 
-
 .judgement {
-  cite {
-    color: #aaa;
-  }
-
-  .verse {
+  blockquote {
     color: #f33;
 
     b {
@@ -54,5 +45,9 @@ q.jesus {
       color: transparent;
       text-shadow: 1px 1px 4px white;
     }
+  }
+
+  cite {
+    color: #aaa;
   }
 }
