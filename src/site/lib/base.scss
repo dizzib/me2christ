@@ -7,6 +7,11 @@ body {
     padding: 0 0.5em;
   }
 
+  section.intro,
+  section.main {
+    margin-bottom: 7em;
+  }
+
   h1 {
     font-size: 2em; // override section>h1 default of 1.5em
   }
