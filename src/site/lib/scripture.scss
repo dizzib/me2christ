@@ -15,10 +15,6 @@ cite:before {
   content: '\a0\2013\a0' // long dash then non breaking space;
 }
 
-q.Jesus {
-  color: red;
-}
-
 .main {
   blockquote {
     border-left: 4px solid #f00;
@@ -27,6 +23,10 @@ q.Jesus {
 
   cite {
     color: #666;
+  }
+
+  q.Jesus {
+    color: red;
   }
 }
 
